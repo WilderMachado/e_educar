@@ -13,7 +13,16 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'eeducar\Model' => 'eeducar\Policies\ModelPolicy',
+        //'eeducar\Model' => 'eeducar\Policies\ModelPolicy',
+        'eeducar\Aluno' => 'eeducar\Policies\AlunoPolicy',
+        'eeducar\Avaliacao' => 'eeducar\Policies\AvaliacaoPolicy',
+        'eeducar\Aviso' => 'eeducar\Policies\AvisoPolicy',
+        'eeducar\Disciplina' => 'eeducar\Policies\DisciplinaPolicy',
+        'eeducar\Documento' => 'eeducar\Policies\DocumentoPolicy',
+        'eeducar\Pergunta' => 'eeducar\Policies\PerguntaPolicy',
+        'eeducar\Professor' => 'eeducar\Policies\ProfessorPolicy',
+        'eeducar\Semestre' => 'eeducar\Policies\SemestrePolicy',
+        'eeducar\User' => 'eeducar\Policies\UserPolicy'
     ];
 
     /**
