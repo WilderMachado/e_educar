@@ -22,6 +22,7 @@ class AuthServiceProvider extends ServiceProvider
         'eeducar\Pergunta' => 'eeducar\Policies\PerguntaPolicy',
         'eeducar\Professor' => 'eeducar\Policies\ProfessorPolicy',
         'eeducar\Semestre' => 'eeducar\Policies\SemestrePolicy',
+        'eeducar\Turma' => 'eeducar\Policies\TurmaPolicy',
         'eeducar\User' => 'eeducar\Policies\UserPolicy'
     ];
 
