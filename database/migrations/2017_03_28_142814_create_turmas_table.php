@@ -17,10 +17,10 @@ class CreateTurmasTable extends Migration
             $table->increments('id');
             $table->string('codigo',6);
             $table->enum('turno', ['matutino','vespertino','noturno']);
-            $table->unsignedInteger('semestre_id');
+            $table->unsignedInteger('ano_id');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('semestre_id')->references('id')->on('semestres');
+            $table->foreign('ano_id')->references('id')->on('anos');
         });
     }
 

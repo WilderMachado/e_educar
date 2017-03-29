@@ -17,10 +17,10 @@ class CreateAvaliacaosTable extends Migration
             $table->increments('id');
             $table->date('inicio');
             $table->date('termino');
-            $table->unsignedInteger('semestre_id');
+            $table->unsignedInteger('ano_id');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('semestre_id')->references('id')->on('semestres');
+            $table->foreign('ano_id')->references('id')->on('anos');
         });
     }
 

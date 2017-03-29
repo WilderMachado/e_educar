@@ -12,4 +12,9 @@ class Aluno extends Model
     protected $softDelete = true;
     protected $fillable = ['matricula', 'nome', 'email'];
     protected $hidden = ['deleted_at'];
+
+    public function turma()
+    {
+        return $this->belongsTo(Turma::class);
+    }
 }

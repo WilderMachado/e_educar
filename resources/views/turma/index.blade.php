@@ -2,37 +2,37 @@
 @section('content')
     <div class="category">
         <div class="card-panel  #388e3c green darken-2 center">
-            <span class=" grey-text text-lighten-5">Disciplinas </span>
-
+            <span class=" grey-text text-lighten-5">Turmas</span>
         </div>
         <table class="highlight  responsive-table">
+
             <thead>
             <tr>
                 <th>Código</th>
-                <th>Nome</th>
-                <th>Carga horária</th>
-                @can('acao', eeducar\Disciplina::class)
+                <th>Ano</th>
+                <th>Turno</th>
+                @can('acao', eeducar\Turma::class)
                 <th>Ação</th>
                 @endcan
             </tr>
             </thead>
-            <tbody>
-            @foreach($disciplinas as $disciplina)
-                <tr>
-                    <td>{{$disciplina->codigo}}</td>
-                    <td>{{$disciplina->nome}}</td>
-                    <td>{{$disciplina->carga_horaria}}</td>
 
+            <tbody>
+            @foreach($turmas as $turma)
+                <tr>
+                    <td>{{$turma->codigo}}</td>
+                    <td>{{$turma->ano->codigo}}</td>
+                    <td>{{$turma->turno}}</td>
                     <td>
-                        @can('alterar', eeducar\Disciplina::class)
+                        @can('alterar', eeducar\Turma::class)
                         <a class="btn-floating blue tooltipped" data-tooltip="Editar"
-                           href="{{ route('disciplinas.editar', ['id'=>$disciplina->id]) }}">
+                           href="{{ route('turmas.editar', ['id'=>$turma->id]) }}">
                             <i class="material-icons">mode_edit</i>
                         </a>
                         @endcan
-                        @can('excluir', eeducar\Disciplina::class)
+                        @can('excluir', eeducar\Turma::class)
                         <a class="btn-floating red btn-excluir tooltipped" data-tooltip="Excluir"
-                           href="{{ route('disciplinas.excluir', ['id'=>$disciplina->id]) }}">
+                           href="{{ route('turmas.excluir', ['id'=>$turma->id]) }}">
                             <i class="material-icons">delete</i>
                         </a>
                         @endcan
@@ -40,13 +40,13 @@
                 </tr>
             @endforeach
             </tbody>
-            {!! $disciplinas->render() !!}
+            {!! $turmas->render() !!}
         </table>
         <br/>
         <br/>
-        @can('salvar', eeducar\Disciplina::class)
-        <a href="{{ route('disciplinas.novo')}}" class="btn btn-primary light-blue darken-3"> Nova disciplina</a>
+        @can('salvar', eeducar\Turma::class)
+        <a href="{{ route('turmas.novo')}}" class="btn btn-primary light-blue darken-3"> Nova Turma</a>
         @endcan
     </div>
-   <!-- {!! Html::script('js/adsproject.js') !!} -->
+    <!-- {!! Html::script('js/adsproject.js') !!} -->
 @endsection

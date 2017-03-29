@@ -12,4 +12,16 @@ class Professor extends Model
     protected $softDelete = true;
     protected $fillable = ['matricula', 'nome', 'email', 'curriculo'];
     protected $hidden = ['deleted_at'];
+
+    public function turmas()
+    {
+        return $this->belongsToMany(Turma::class, 'disciplina_professor_turma');
+    }
+
+    public function disciplinas()
+    {
+        return $this->belongsToMany(Disciplina::class,'disciplina_professor_turma');
+    }
+
+
 }

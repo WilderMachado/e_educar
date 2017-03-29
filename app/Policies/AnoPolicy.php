@@ -5,7 +5,7 @@ namespace eeducar\Policies;
 use eeducar\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class SemestrePolicy
+class AnoPolicy
 {
     use HandlesAuthorization;
 

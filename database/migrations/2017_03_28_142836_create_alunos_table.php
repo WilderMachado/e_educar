@@ -18,8 +18,10 @@ class CreateAlunosTable extends Migration
             $table->string('matricula', 10)->unique();
             $table->string('nome', 60);
             $table->string('email', 100);
+            $table->unsignedInteger('turma_id');
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('turma_id')->references('id')->on('turmas');
         });
     }
 
