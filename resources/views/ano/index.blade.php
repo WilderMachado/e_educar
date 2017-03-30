@@ -1,18 +1,18 @@
 @extends('layouts.app')
 @section('content')
-    <div class="contegory">
+    <div class="container">
         <div class="card-panel  #388e3c green darken-2 center">
-            <span class=" grey-text text-lighten-5">Anos</span>
+            <span class="grey-text text-lighten-5">Anos</span>
         </div>
-        <table class="highlight  responsive-table">
-
+        <!-- <table class="table table-striped table-bordered table-list"> -->
+            <table class="table">
             <thead>
             <tr>
-                <th>Código</th>
-                <th>Início</th>
-                <th>Término</th>
+                <th>CÃ³digo</th>
+                <th>InÃ­cio</th>
+                <th>TÃ©rmino</th>
                 @can('acao', eeducar\Ano::class)
-                <th>Ação</th>
+                <th>Acao</th>
                 @endcan
             </tr>
             </thead>

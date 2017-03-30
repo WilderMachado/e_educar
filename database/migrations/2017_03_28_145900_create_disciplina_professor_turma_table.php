@@ -19,7 +19,7 @@ class CreateDisciplinaProfessorTurmaTable extends Migration
             $table->unsignedInteger('turma_id');
             $table->foreign('disciplina_id')->references('id')->on('disciplinas');
             $table->foreign('professor_id')->references('id')->on('professors');
-            $table->foreign('professor_id')->references('id')->on('´professors');
+            $table->foreign('turma_id')->references('id')->on('turmas');
         });
     }
 

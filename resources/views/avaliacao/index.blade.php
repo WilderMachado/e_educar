@@ -1,18 +1,17 @@
 @extends('layouts.app')
 @section('content')
-
-    <div class="category">
+    <div class="container">
         <div class="card-panel  #388e3c green darken-2 center">
-            <span class=" grey-text text-lighten-5">Avaliações</span>
+            <span class=" grey-text text-lighten-5">Avaliacoes</span>
         </div>
-        <table class="highlight  responsive-table">
+        <table class="table">
             <thead>
             <tr>
                 <th>Ano</th>
-                <th>Início</th>
-                <th>Término</th>
+                <th>InÃ­cio</th>
+                <th>TÃ©rmino</th>
                 @can('acao', eeducar\Avaliacao::class)
-                <th>Ação</th>
+                <th>Acao</th>
                 @endcan
             </tr>
             </thead>
@@ -36,7 +35,7 @@
                         </a>
                         @endcan
                         @can('relatorio', eeducar\Avaliacao::class)
-                        <a class="btn-floating grey darken-3 tooltipped" data-tooltip="Relatório" target="_blank"
+                        <a class="btn-floating grey darken-3 tooltipped" data-tooltip="RelatÃ³rio" target="_blank"
                            href="{{ route('avaliacoes.relatorio', ['id'=>$avaliacao->id]) }}">
                             <i class="material-icons">description</i>
                         </a>
@@ -45,7 +44,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="3">Sem Avaliações!</td>
+                    <td colspan="3">Sem AvaliaÃ§Ãµes!</td>
                 </tr>
             @endforelse
             </tbody>
@@ -54,7 +53,7 @@
         <br/>
         <br/>
         @can('salvar', eeducar\Avaliacao::class)
-        <a href="{{ route('avaliacoes.novo')}}" class="btn btn-primary light-blue darken-3"> Nova avaliação</a>
+        <a href="{{ route('avaliacoes.novo')}}" class="btn btn-primary light-blue darken-3"> Nova avaliaÃ§Ã£o</a>
         @endcan
     </div>
 

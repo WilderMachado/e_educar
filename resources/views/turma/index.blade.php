@@ -1,18 +1,18 @@
 @extends('layouts.app')
 @section('content')
-    <div class="category">
+    <div class="container">
         <div class="card-panel  #388e3c green darken-2 center">
             <span class=" grey-text text-lighten-5">Turmas</span>
         </div>
-        <table class="highlight  responsive-table">
+        <table class="table">
 
             <thead>
             <tr>
-                <th>Código</th>
+                <th>CÃ³digo</th>
                 <th>Ano</th>
                 <th>Turno</th>
                 @can('acao', eeducar\Turma::class)
-                <th>Ação</th>
+                <th>AÃ§Ã£o</th>
                 @endcan
             </tr>
             </thead>
@@ -48,5 +48,5 @@
         <a href="{{ route('turmas.novo')}}" class="btn btn-primary light-blue darken-3"> Nova Turma</a>
         @endcan
     </div>
-    <!-- {!! Html::script('js/adsproject.js') !!} -->
+
 @endsection

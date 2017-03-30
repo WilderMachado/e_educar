@@ -23,7 +23,7 @@ Route::group(['prefix' => 'alunos', 'where' => ['id' => '[0-9]+']], function () 
     Route::get('', ['as' => 'alunos', 'uses' => 'AlunoController@index']);
 });
 Route::group(['prefix' => 'anos', 'where' => ['id' => '[0-9]+']], function () {
-    Route::get('', ['as' => 'anos', 'uses' => 'SemestreController@index']);
+    Route::get('', ['as' => 'anos', 'uses' => 'AnoController@index']);
 });
 
 Route::group(['prefix' => 'avaliacoes', 'where' => ['id' => '[0-9]+']], function () {
@@ -57,3 +57,7 @@ Route::group(['prefix' => 'respostas', 'where' => ['id' => '[0-9]+']], function 
 Route::group(['prefix' => 'turmas', 'where' => ['id' => '[0-9]+']], function () {
     Route::get('', ['as' => 'turmas', 'uses' => 'TurmaController@index']);
 });
+
+/*Route::group(['prefix' => 'users', 'where' => ['id' => '[0-9]+']], function () {
+    Route::get('', ['as' => 'users', 'uses' => 'UserController@index']);
+});*/

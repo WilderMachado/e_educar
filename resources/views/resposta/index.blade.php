@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('content')
-    <div class="category">
+    <div class="container">
         <div class="card-panel  #388e3c green darken-2 center">
             <span class=" grey-text text-lighten-5">Respostas</span>
         </div>
-        <table class="highlight  responsive-table">
+        <table class="table">
             <thead>
             <tr>
                 <th>Pergunta</th>

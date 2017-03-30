@@ -14,7 +14,7 @@ class AlunoController extends Controller
     public function index()
     {
         $alunos = Aluno::orderBy('nome')
-            ->paginate(config('constantes.paginacao'));             //busca relação de alunos em ordem alfabética utilizando páginação
-        return view('aluno.index', ['alunos' => $alunos]);         //Redireciona para a view com os alunos
+            ->paginate(config('constantes.paginacao'));     //busca relação de alunos em ordem alfabética utilizando páginação
+        return view('aluno.index', ['alunos' => $alunos]);  //Redireciona para a view com os alunos
     }
 }

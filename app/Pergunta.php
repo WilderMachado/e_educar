@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pergunta extends Model
 {
-    use SoftDeletes
+    use SoftDeletes;
 
     protected $softDelete = true;
     protected $fillable = ['enunciado', 'pergunta_fechada'];

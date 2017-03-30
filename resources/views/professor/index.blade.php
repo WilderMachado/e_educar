@@ -1,18 +1,18 @@
 @extends('layouts.app')
 @section('content')
-    <div class="category">
+    <div class="container">
         <div class="card-panel  #388e3c green darken-2 center">
             <span class=" grey-text text-lighten-5">Professores</span>
         </div>
-        <table class="highlight  responsive-table">
+        <table class="table">
 
             <thead>
             <tr>
-                <th>Matrícula</th>
+                <th>MatrÃ­cula</th>
                 <th>Nome</th>
                 <th>Curriculo</th>
                 @can('acao', eeducar\Professor::class)
-                <th>Ação</th>
+                <th>AÃ§Ã£o</th>
                 @endcan
             </tr>
             </thead>
@@ -50,9 +50,9 @@
         </table>
         <br/>
         <br/>
-        @can('salvar', new Professor())
+        @can('salvar', eeducar\Professor::class)
         <a href="{{ route('professores.novo')}}" class="btn btn-primary light-blue darken-3"> Novo professor</a>
         @endcan
     </div>
-    <!-- {!! Html::script('js/adsproject.js') !!} -->
+    
 @endsection

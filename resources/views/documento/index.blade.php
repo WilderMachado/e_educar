@@ -1,16 +1,16 @@
 @extends('layouts.app')
 @section('content')
-    <div class="category">
+    <div class="container">
         <div class="card-panel  #388e3c green darken-2 center">
             <span class=" grey-text text-lighten-5">Documentos</span>
         </div>
-        <table class="highlight  responsive-table">
+        <table class="table">
             <thead>
             <tr>
-                <th>Título</th>
+                <th>TÃ­tulo</th>
                 <th>Link</th>
                 @can('acao', eeducar\Documento::class)
-                <th>Ação</th>
+                <th>AÃ§Ã£o</th>
                 @endcan
             </tr>
             </thead>
@@ -51,5 +51,5 @@
         <a href="{{ route('documentos.novo')}}" class="btn btn-primary light-blue darken-3"> Novo documento</a>
         @endcan
     </div>
-    <!-- {!! Html::script('js/adsproject.js') !!} -->
+
 @endsection

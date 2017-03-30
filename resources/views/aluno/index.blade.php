@@ -1,19 +1,19 @@
 @extends('layouts.app')
 @section('content')
-    <div class="category">
+    <div class="container">
         <div class="card-panel  #388e3c green darken-2 center">
             <span class=" grey-text text-lighten-5">Alunos</span>
         </div>
-        <table class="highlight  responsive-table">
+        <table class="table">
 
             <thead>
             <tr>
-                <th>Matrícula</th>
+                <th>MatrÃ­cula</th>
                 <th>Nome</th>
                 <th>Turma</th>
                 <th>email</th>
                 @can('acao', eeducar\Aluno::class)
-                <th>Ação</th>
+                <th>AÃ§Ã£o</th>
                 @endcan
             </tr>
             </thead>
@@ -29,15 +29,15 @@
                         {{ $aluno->email }}
                     @endif
                     <td>
-                        @can('alterar', $aluno)
+                        @can('alterar', eeducar\Aluno::class)
                         <a class="btn-floating blue tooltipped" data-tooltip="Editar"
                            href="{{ route('alunos.editar', ['id'=>$aluno->id]) }}">
                             <i class="material-icons">mode_edit</i>
                         </a>
                         @endcan
-                        @can('excluir', $aluno)
+                        @can('excluir', eeducar\Aluno::class)
                         <a class="btn-floating red btn-excluir"
-                           href="{{ route('alunos.excluir', ['id'=>$aluno->id]) }}" >
+                           href="{{ route('alunos.excluir', ['id'=>$aluno->id]) }}">
                             <i class="material-icons">delete</i>
                         </a>
                         @endcan
@@ -49,12 +49,12 @@
         </table>
         <br/>
         <br/>
-        @can('salvar', new Aluno())
+        @can('salvar', eeducar\Aluno::class)
         <a href="{{ route('alunos.novo')}}" class="btn btn-primary light-blue darken-3">Novo Aluno</a>
         @endcan
         <br/> <br/>
-        @can('carregar', new Aluno())
-        <a href="{{ route('alunos.arquivo')}}" class="btn btn-primary light-blue darken-3">Arquivo de Alunos</a>
-        @endcan
+        <!-- @can('carregar', eeducar\Aluno::class)
+                <a href="{{ route('alunos.arquivo')}}" class="btn btn-primary light-blue darken-3">Arquivo de Alunos</a>
+        @endcan -->
     </div>
 @endsection

@@ -2,7 +2,7 @@
 @section('content')
     <div class="category">
         <div class="card-panel  #388e3c green darken-2 center">
-            <span class=" grey-text text-lighten-5">Usu·rios</span>
+            <span class=" grey-text text-lighten-5">Usu√°rios</span>
         </div>
         <table class="highlight  responsive-table">
             <thead>
@@ -11,7 +11,7 @@
                 <th>E-mail</th>
                 <th>Papel</th>
                 @can('acao', eeducar\User::class)
-                <th>AÁ„o</th>
+                <th>A√ß√£o</th>
                 @endcan
             </tr>
             </thead>
@@ -43,8 +43,7 @@
         <br/>
         <br/>
         @can('salvar', eeducar\User::class)
-        <a href="{{ route('users.novo')}}" class="btn btn-primary light-blue darken-3"> Novo usu·rio</a>
+        <a href="{{ route('users.novo')}}" class="btn btn-primary light-blue darken-3"> Novo usu√°rio</a>
         @endcan
     </div>
-   <!-- {!! Html::script('js/adsproject.js') !!} -->
 @endsection
