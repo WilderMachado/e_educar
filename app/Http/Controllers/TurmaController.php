@@ -2,8 +2,8 @@
 
 namespace eeducar\Http\Controllers;
 
+use eeducar\Http\Requests\TurmaRequest;
 use eeducar\Turma;
-use Illuminate\Http\Request;
 
 class TurmaController extends Controller
 {
@@ -13,6 +13,31 @@ class TurmaController extends Controller
     public function index()
     {
         $turmas = Turma::paginate(config('constantes.paginacao'));  //Busca todas as turmas
-        return view('turma.index', ['turmas' => $turmas]);          //Redireciona à página inicial de turmas
+        return view('turma.index', compact('turmas'));          //Redireciona à página inicial de turmas
+    }
+
+    public function novo()
+    {
+        return view('turma.novo');
+    }
+
+    public function salvar()
+    {
+
+    }
+
+    public function editar($id)
+    {
+
+    }
+
+    public function alterar(TurmaRequest $request, $id)
+    {
+
+    }
+
+    public function excluir($id)
+    {
+
     }
 }

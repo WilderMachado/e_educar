@@ -3,7 +3,7 @@
 namespace eeducar\Http\Controllers;
 
 use eeducar\Aluno;
-use Illuminate\Http\Request;
+use eeducar\Http\Requests\AlunoRequest;
 
 class AlunoController extends Controller
 {
@@ -14,7 +14,32 @@ class AlunoController extends Controller
     public function index()
     {
         $alunos = Aluno::orderBy('nome')
-            ->paginate(config('constantes.paginacao'));     //busca relação de alunos em ordem alfabética utilizando páginação
-        return view('aluno.index', ['alunos' => $alunos]);  //Redireciona para a view com os alunos
+            ->paginate(config('constantes.paginacao')); //busca relação de alunos em ordem alfabética utilizando páginação
+        return view('aluno.index', compact('alunos'));  //Redireciona para a view com os alunos
+    }
+
+    public function novo()
+    {
+        return view('aluno.novo');
+    }
+
+    public function salvar()
+    {
+        return redirect('alunos');
+    }
+
+    public function editar($id)
+    {
+
+    }
+
+    public function alterar(AlunoRequest $request, $id)
+    {
+
+    }
+
+    public function excluir($id)
+    {
+
     }
 }

@@ -4,7 +4,6 @@
         <div class="card-panel  #388e3c green darken-2 center">
             <span class="grey-text text-lighten-5">Anos</span>
         </div>
-        <!-- <table class="table table-striped table-bordered table-list"> -->
             <table class="table">
             <thead>
             <tr>
@@ -12,7 +11,7 @@
                 <th>Início</th>
                 <th>Término</th>
                 @can('acao', eeducar\Ano::class)
-                <th>Acao</th>
+                <th>Ação</th>
                 @endcan
             </tr>
             </thead>

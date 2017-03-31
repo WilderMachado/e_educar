@@ -9,6 +9,10 @@ class AvaliacaoPolicy
 {
     use HandlesAuthorization;
 
+    public function visualizar(User $user)
+    {
+        return $user->role == 'admin';
+    }
 
     public function salvar(User $user)
     {

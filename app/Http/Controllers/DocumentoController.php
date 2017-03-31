@@ -3,7 +3,7 @@
 namespace eeducar\Http\Controllers;
 
 use eeducar\Documento;
-use Illuminate\Http\Request;
+use eeducar\Http\Requests\DocumentoRequest;
 
 class DocumentoController extends Controller
 {
@@ -13,6 +13,31 @@ class DocumentoController extends Controller
     public function index()
     {
         $documentos = Documento::paginate(config('constantes.paginacao'));  //Busca todos os documentos
-        return view('documento.index', ['documentos' => $documentos]);     //Redireciona à página inicial de documentos
+        return view('documento.index', compact('documentos'));              //Redireciona à página inicial de documentos
+    }
+
+    public function novo()
+    {
+        return view('documento.novo');
+    }
+
+    public function salvar()
+    {
+
+    }
+
+    public function editar($id)
+    {
+
+    }
+
+    public function alterar(DocumentoRequest $request, $id)
+    {
+
+    }
+
+    public function excluir($id)
+    {
+
     }
 }

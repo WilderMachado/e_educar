@@ -52,9 +52,5 @@
         @can('salvar', eeducar\Aluno::class)
         <a href="{{ route('alunos.novo')}}" class="btn btn-primary light-blue darken-3">Novo Aluno</a>
         @endcan
-        <br/> <br/>
-        <!-- @can('carregar', eeducar\Aluno::class)
-                <a href="{{ route('alunos.arquivo')}}" class="btn btn-primary light-blue darken-3">Arquivo de Alunos</a>
-        @endcan -->
     </div>
 @endsection

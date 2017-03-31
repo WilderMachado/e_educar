@@ -13,6 +13,31 @@ class PerguntaController extends Controller
     public function index()
     {
         $perguntas = Pergunta::paginate(config('constantes.paginacao'));    //Busca todas as perguntas
-        return view('pergunta.index', ['perguntas' => $perguntas]);         //Redireciona à página inicial de perguntas
+        return view('pergunta.index', compact('perguntas'));                //Redireciona à página inicial de perguntas
+    }
+
+    public function novo()
+    {
+        return view('pergunta.novo');
+    }
+
+    public function salvar()
+    {
+
+    }
+
+    public function editar($id)
+    {
+
+    }
+
+    public function alterar(PerguntaRequest $request, $id)
+    {
+
+    }
+
+    public function excluir($id)
+    {
+
     }
 }

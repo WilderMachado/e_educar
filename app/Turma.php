@@ -32,5 +32,8 @@ class Turma extends Model
     {
         return $this->hasMany(Aluno::class);
     }
-
+    public function avisos()
+    {
+        return $this->belongsToMany(Aviso::class);
+    }
 }

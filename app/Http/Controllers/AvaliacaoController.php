@@ -3,9 +3,8 @@
 namespace eeducar\Http\Controllers;
 
 use eeducar\Avaliacao;
-use Illuminate\Http\Request;
+use eeducar\Http\Requests\AvaliacaoRequest;
 use Illuminate\Support\Facades\Auth;
-
 
 class AvaliacaoController extends Controller
 {
@@ -18,7 +17,31 @@ class AvaliacaoController extends Controller
             return redirect()->route('questionarios');                      //Redireciona para questionário
         endif;
         $avaliacoes = Avaliacao::paginate(config('constantes.paginacao'));  //Busca todas as avaliações
-        return view('avaliacao.index', ['avaliacoes' => $avaliacoes]);     //Redireciona para página inicial de avaliações
+        return view('avaliacao.index', compact('avaliacoes'));              //Redireciona para página inicial de avaliações
     }
 
+    public function novo()
+    {
+        return view('avaliacao.novo');
+    }
+
+    public function salvar()
+    {
+
+    }
+
+    public function editar($id)
+    {
+
+    }
+
+    public function alterar(AvaliacaoRequest $request, $id)
+    {
+
+    }
+
+    public function excluir($id)
+    {
+
+    }
 }

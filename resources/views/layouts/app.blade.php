@@ -42,9 +42,28 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
+                    <!-- <ul class="nav navbar-nav">
+                        &nbsp; -->
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                @can('visualizar',eeducar\Ano::class)
+                                <li><a href="{{route('anos')}}">Anos</a></li>
+                                @endcan
+                                @can('visualizar',eeducar\Aluno::class)
+                                <li><a href="{{route('alunos')}}">Alunos</a></li>
+                                @endcan
+                                @can('visualizar',eeducar\Professor::class)
+                                <li><a href="{{route('professores')}}">Professores</a></li>
+                                @endcan
+                                @can('visualizar',eeducar\Turma::class)
+                                <li><a href="{{route('turmas')}}">Turmas</a></li>
+                                @endcan
+                                @can('visualizar',eeducar\Documento::class)
+                                <li><a href="{{route('documentos')}}">documentos</a></li>
+                                @endcan
+                            </ul>
+                        </div>
+                   <!-- </ul> -->
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">

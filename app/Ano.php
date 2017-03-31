@@ -17,7 +17,10 @@ class Ano extends Model
     {
         return $this->hasMany(Turma::class);
     }
-
+    public function unidades()
+    {
+        return $this->hasMany(Unidade::class);
+    }
     /**
      * Busca avaliação do semestre
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

@@ -3,7 +3,7 @@
 namespace eeducar\Http\Controllers;
 
 use eeducar\Disciplina;
-use Illuminate\Http\Request;
+use eeducar\Http\Requests\DisciplinaRequest;
 
 class DisciplinaController extends Controller
 {
@@ -13,7 +13,32 @@ class DisciplinaController extends Controller
     public function index()
     {
         $disciplinas = Disciplina::orderBy('nome')
-            ->paginate(config('constantes.paginacao'));                     //Busca disciplinas em ordem alfabética e pagina
-        return view('disciplina.index', ['disciplinas' => $disciplinas]);  //Redireciona à página inicial de disciplinas
+            ->paginate(config('constantes.paginacao'));             //Busca disciplinas em ordem alfabética e pagina
+        return view('disciplina.index', compact('disciplinas'));    //Redireciona à página inicial de disciplinas
+    }
+
+    public function novo()
+    {
+        return view('disciplina.novo');
+    }
+
+    public function salvar()
+    {
+
+    }
+
+    public function editar($id)
+    {
+
+    }
+
+    public function alterar(DisciplinaRequest $request, $id)
+    {
+
+    }
+
+    public function excluir($id)
+    {
+
     }
 }

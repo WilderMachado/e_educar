@@ -2,8 +2,8 @@
 
 namespace eeducar\Http\Controllers;
 
+use eeducar\Http\Requests\ProfessorRequest;
 use eeducar\Professor;
-use Illuminate\Http\Request;
 
 class ProfessorController extends Controller
 {
@@ -13,7 +13,32 @@ class ProfessorController extends Controller
     public function index()
     {
         $professores = Professor::orderBy('nome')
-            ->paginate(config('constantes.paginacao'));                     //Busca professores ordenando por nome
-        return view('professor.index', ['professores' => $professores]);  //Redireciona à página inicial de professores
+            ->paginate(config('constantes.paginacao'));             //Busca professores ordenando por nome
+        return view('professor.index',  compact('professores'));    //Redireciona à página inicial de professores
+    }
+
+    public function novo()
+    {
+        return view('professor.novo');
+    }
+
+    public function salvar()
+    {
+
+    }
+
+    public function editar($id)
+    {
+
+    }
+
+    public function alterar(ProfessorRequest $request, $id)
+    {
+
+    }
+
+    public function excluir($id)
+    {
+
     }
 }

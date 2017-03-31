@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAlunosTable extends Migration
+class CreateAvisoTurmaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateAlunosTable extends Migration
      */
     public function up()
     {
-        Schema::create('alunos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('matricula', 10)->unique();
-            $table->string('nome', 60);
-            $table->string('email', 100);
-            $table->string('foto');
+        Schema::create('aviso_turma', function (Blueprint $table) {
+            $table->unsignedInteger('aviso_id');
             $table->unsignedInteger('turma_id');
-            $table->timestamps();
-            $table->softDeletes();
+            $table->primary(['aviso_id','turma_id']);
+            $table->foreign('aviso_id')->references('id')->on('avisos');
             $table->foreign('turma_id')->references('id')->on('turmas');
         });
     }
@@ -33,6 +29,6 @@ class CreateAlunosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('alunos');
+        Schema::dropIfExists('aviso_turma');
     }
 }
