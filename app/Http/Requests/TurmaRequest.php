@@ -26,7 +26,7 @@ class TurmaRequest extends FormRequest
         return [
             'codigo' =>'required',
             'turno'=>'required',
-            'semestre_id'=>'required'
+            'ano_id'=>'required'
         ];
     }
 }

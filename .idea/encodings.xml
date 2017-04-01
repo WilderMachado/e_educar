@@ -28,6 +28,7 @@
     <file url="file://$PROJECT_DIR$/resources/views/professor/novo.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/resposta/index.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/turma/index.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/turma/novo.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/user/editar.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/user/index.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/user/novo.blade.php" charset="UTF-8" />

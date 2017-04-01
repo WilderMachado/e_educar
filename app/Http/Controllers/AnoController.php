@@ -22,9 +22,10 @@ class AnoController extends Controller
     }
 
 
-    public function salvar()
+    public function salvar(AnoRequest $request)
     {
-
+        Ano::create($request->all());
+        return redirect('anos');
     }
 
     public function editar($id)

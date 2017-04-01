@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
         <div class="card-panel  #388e3c green darken-2 center">
             <span class=" grey-text text-lighten-5">Documentos</span>
         </div>
@@ -50,6 +49,4 @@
         @can('salvar', eeducar\Documento::class)
         <a href="{{ route('documentos.novo')}}" class="btn btn-primary light-blue darken-3"> Novo documento</a>
         @endcan
-    </div>
-
 @endsection

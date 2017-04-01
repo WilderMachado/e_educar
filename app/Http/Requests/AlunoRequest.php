@@ -24,10 +24,10 @@ class AlunoRequest extends FormRequest
     public function rules()
     {
         return [
-            'matricula'=>'required|min:6|numeric',
+            'matricula'=>'required|min:6',
             'nome'=>'required|min:5',
             'email'=>'email',
-            'foto'=>''
+            'foto'=>'image'
         ];
     }
 }

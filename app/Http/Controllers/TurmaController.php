@@ -2,6 +2,7 @@
 
 namespace eeducar\Http\Controllers;
 
+use eeducar\Ano;
 use eeducar\Http\Requests\TurmaRequest;
 use eeducar\Turma;
 
@@ -18,10 +19,12 @@ class TurmaController extends Controller
 
     public function novo()
     {
-        return view('turma.novo');
+        $turnos=config('constantes.turnos');
+        $anos = Ano::pluck('codigo','id');
+        return view('turma.novo', compact('turnos','anos'));
     }
 
-    public function salvar()
+    public function salvar(TurmaRequest $request)
     {
 
     }

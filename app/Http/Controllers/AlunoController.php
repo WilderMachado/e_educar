@@ -3,7 +3,10 @@
 namespace eeducar\Http\Controllers;
 
 use eeducar\Aluno;
+use eeducar\Http\ManipuladorArquivo;
 use eeducar\Http\Requests\AlunoRequest;
+use eeducar\Turma;
+
 
 class AlunoController extends Controller
 {
@@ -20,15 +23,19 @@ class AlunoController extends Controller
 
     public function novo()
     {
-        return view('aluno.novo');
+        $turmas = Turma::all();
+        return view('aluno.novo', compact('turmas'));
     }
 
     public function salvar(AlunoRequest $request)
     {
         $this->validate($request,
             ['matricula' => 'unique:alunos,matricula',
-                'email' => 'unique:alunos,email']);                 //Valida matrícula e email de aluno
-
+                'email' => 'unique:alunos,email',
+            ]);
+        $aluno = new Aluno($request->all());
+        $aluno->foto = ManipuladorArquivo::salvar($request->file('foto'), 'aluno', $aluno->nome);
+        $aluno->save();
         return redirect('alunos');
     }
 

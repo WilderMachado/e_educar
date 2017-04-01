@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
         <div class="card-panel  #388e3c green darken-2 center">
             <span class=" grey-text text-lighten-5">Alunos</span>
         </div>
@@ -52,5 +51,4 @@
         @can('salvar', eeducar\Aluno::class)
         <a href="{{ route('alunos.novo')}}" class="btn btn-primary light-blue darken-3">Novo Aluno</a>
         @endcan
-    </div>
 @endsection
