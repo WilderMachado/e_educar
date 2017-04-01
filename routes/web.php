@@ -22,6 +22,7 @@ Route::get('/home', 'HomeController@index');
 Route::group(['prefix' => 'alunos', 'where' => ['id' => '[0-9]+']], function () {
     Route::get('', ['as' => 'alunos', 'uses' => 'AlunoController@index']);
     Route::get('novo', ['as' => 'alunos.novo', 'uses' => 'AlunoController@novo']);
+    Route::post('novo', ['as' => 'alunos.salvar', 'uses' => 'AlunoController@salvar']);
 });
 Route::group(['prefix' => 'anos', 'where' => ['id' => '[0-9]+']], function () {
     Route::get('', ['as' => 'anos', 'uses' => 'AnoController@index']);

@@ -26,7 +26,8 @@ class AlunoRequest extends FormRequest
         return [
             'matricula'=>'required|min:6|numeric',
             'nome'=>'required|min:5',
-            'email'=>'email'
+            'email'=>'email',
+            'foto'=>''
         ];
     }
 }

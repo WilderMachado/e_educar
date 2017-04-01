@@ -23,8 +23,12 @@ class AlunoController extends Controller
         return view('aluno.novo');
     }
 
-    public function salvar()
+    public function salvar(AlunoRequest $request)
     {
+        $this->validate($request,
+            ['matricula' => 'unique:alunos,matricula',
+                'email' => 'unique:alunos,email']);                 //Valida matrícula e email de aluno
+
         return redirect('alunos');
     }
 
