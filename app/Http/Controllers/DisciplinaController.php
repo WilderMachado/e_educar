@@ -22,23 +22,31 @@ class DisciplinaController extends Controller
         return view('disciplina.novo');
     }
 
-    public function salvar()
+    public function salvar(DisciplinaRequest $request)
     {
-
+        $this->validate($request,
+            ['codigo' => 'unique:disciplinas,codigo']);
+        Disciplina::create($request->all());
+        return redirect('disciplinas');
     }
 
     public function editar($id)
     {
-
+        $disciplina = Disciplina::find($id);
+        return view('disciplina.editar',compact('disciplina'));
     }
 
     public function alterar(DisciplinaRequest $request, $id)
     {
-
+        $this->validate($request,
+            ['codigo' => 'unique:disciplinas,codigo,' . $id]);
+        Disciplina::find($id)->update($request->all());
+        return redirect('disciplinas');
     }
 
     public function excluir($id)
     {
-
+        Disciplina::find($id)->delete();
+        return redirect('disciplinas');
     }
 }

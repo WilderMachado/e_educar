@@ -50,14 +50,17 @@
                         @can('visualizar',eeducar\Ano::class)
                         <li><a href="{{route('anos')}}">Anos</a></li>
                         @endcan
-                        @can('visualizar',eeducar\Aluno::class)
-                        <li><a href="{{route('alunos')}}">Alunos</a></li>
-                        @endcan
                         @can('visualizar',eeducar\Professor::class)
                         <li><a href="{{route('professores')}}">Professores</a></li>
                         @endcan
+                        @can('visualizar',eeducar\Disciplina::class)
+                        <li><a href="{{route('disciplinas')}}">Disciplinas</a></li>
+                        @endcan
                         @can('visualizar',eeducar\Turma::class)
                         <li><a href="{{route('turmas')}}">Turmas</a></li>
+                        @endcan
+                        @can('visualizar',eeducar\Aluno::class)
+                        <li><a href="{{route('alunos')}}">Alunos</a></li>
                         @endcan
                         @can('visualizar',eeducar\Documento::class)
                         <li><a href="{{route('documentos')}}">documentos</a></li>
@@ -100,14 +103,10 @@
         </div>
     </nav>
     <div class="container">
-
-
-
         @yield('content')
     </div>
 </div>
 </div>
-
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>

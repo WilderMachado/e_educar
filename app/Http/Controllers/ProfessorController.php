@@ -22,23 +22,31 @@ class ProfessorController extends Controller
         return view('professor.novo');
     }
 
-    public function salvar()
+    public function salvar(ProfessorRequest $request)
     {
-
+        $this->validate($request,[
+            'matricula' => 'unique:professors,matricula',
+            'email'=>'unique:professors,email'
+        ]);                                                                 //Valida matrícula e e-mail do professor
+        Professor::create($request->all());                                 //Cria novo professor
+        return redirect('professores');                                     //Redireciona para página inicial de professores
     }
 
     public function editar($id)
     {
-
+        $professor = Professor::find($id);
+        return view('professor.editar',compact('professor'));
     }
 
     public function alterar(ProfessorRequest $request, $id)
     {
-
+        Professor::find($id)->update($request->all());
+        return redirect('professores');
     }
 
     public function excluir($id)
     {
-
+        Professor::find($id)->delete();
+        return redirect('professores');
     }
 }

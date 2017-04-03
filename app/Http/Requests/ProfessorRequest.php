@@ -26,7 +26,8 @@ class ProfessorRequest extends FormRequest
         return [
             'matricula' => 'required|min:6',
             'nome' => 'required|min:5',
-            'curriculo' => 'url'
+            'email'=>'required|email',
+            'curriculo' => 'nullable|url'
         ];
     }
 }

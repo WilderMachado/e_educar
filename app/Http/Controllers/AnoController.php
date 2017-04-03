@@ -24,22 +24,29 @@ class AnoController extends Controller
 
     public function salvar(AnoRequest $request)
     {
+        $this->validate($request,
+            ['codigo' => 'unique:anos,codigo']);
         Ano::create($request->all());
         return redirect('anos');
     }
 
     public function editar($id)
     {
-
+        $ano = Ano::find($id);
+        return view('ano.editar', compact('ano'));
     }
 
     public function alterar(AnoRequest $request, $id)
     {
-
+        $this->validate($request,
+            ['codigo' => 'unique:anos,codigo,' . $id]);
+        Ano::find($id)->update($request->all());
+        return redirect('anos');
     }
 
     public function excluir($id)
     {
-
+        Ano::find($id)->delete();
+        return redirect('anos');
     }
 }

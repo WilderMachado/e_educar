@@ -3,7 +3,9 @@
 namespace eeducar\Http\Controllers;
 
 use eeducar\Ano;
+use eeducar\Disciplina;
 use eeducar\Http\Requests\TurmaRequest;
+use eeducar\Professor;
 use eeducar\Turma;
 
 class TurmaController extends Controller
@@ -21,7 +23,9 @@ class TurmaController extends Controller
     {
         $turnos=config('constantes.turnos');
         $anos = Ano::pluck('codigo','id');
-        return view('turma.novo', compact('turnos','anos'));
+        $disciplinas = Disciplina::pluck('nome','id');
+        $professores = Professor::pluck('nome','id');
+        return view('turma.novo', compact('turnos','anos','disciplinas','professores'));
     }
 
     public function salvar(TurmaRequest $request)
