@@ -23,8 +23,8 @@ class TurmaController extends Controller
     {
         $turnos=config('constantes.turnos');
         $anos = Ano::pluck('codigo','id');
-        $disciplinas = Disciplina::pluck('nome','id');
-        $professores = Professor::pluck('nome','id');
+        $disciplinas = Disciplina::orderBy('nome')->pluck('nome','id');
+        $professores = Professor::orderBy('nome')->pluck('nome','id');
         return view('turma.novo', compact('turnos','anos','disciplinas','professores'));
     }
 

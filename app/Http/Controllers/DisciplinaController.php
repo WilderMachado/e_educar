@@ -33,7 +33,7 @@ class DisciplinaController extends Controller
     public function editar($id)
     {
         $disciplina = Disciplina::find($id);
-        return view('disciplina.editar',compact('disciplina'));
+        return view('disciplina.editar', compact('disciplina'));
     }
 
     public function alterar(DisciplinaRequest $request, $id)
