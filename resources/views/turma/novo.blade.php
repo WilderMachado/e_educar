@@ -29,7 +29,7 @@
                 <legend>Disciplinas</legend>
                 <div class="disciplina-professor">
                     <div class="form-group">
-                        {!! Form::label ('disciplinas[]', 'disciplina: ',[ 'class'=>'control-label col-xs-2']) !!}
+                        {!! Form::label ('disciplinas[]', 'Disciplina: ',[ 'class'=>'control-label col-xs-2']) !!}
                         <div class="col-xs-5">
                             {!! Form::select ('disciplinas[]', $disciplinas, null, ['class'=>'form-control']) !!}
                         </div>
