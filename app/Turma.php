@@ -4,6 +4,7 @@ namespace eeducar;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Turma extends Model
 {
@@ -32,8 +33,14 @@ class Turma extends Model
     {
         return $this->hasMany(Aluno::class);
     }
+
     public function avisos()
     {
         return $this->belongsToMany(Aviso::class);
+    }
+
+    public function disciplinaProfessor()
+    {
+        return DB::table('disciplina_professor_turma')->where('turma_id', $this->id);
     }
 }

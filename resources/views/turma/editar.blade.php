@@ -8,7 +8,7 @@
         <div class="form-horizontal">
             {!! Form::open(['route'=>['turmas.alterar', $turma->id], 'method'=>'put']) !!}
             <div class="form-group">
-                {!! Form::label ('codigo', 'Código: ',[ 'class'=>'control-label col-xs-2']) !!}
+                {!! Form::label ('codigo', 'CÃ³digo: ',[ 'class'=>'control-label col-xs-2']) !!}
                 <div class="col-xs-5">
                     {!! Form::text ('codigo', $turma->codigo, ['class'=>'form-control']) !!}
                 </div>
@@ -27,18 +27,18 @@
             </div>
             <fildset id="inclusao">
                 <legend>Disciplinas</legend>
-                @for($i=0; $i<$turma->disciplinas->count(); $i++)
+                @foreach($disciplinasProfessores as $disciplinaProfessor)
                 <div class="disciplina-professor">
                     <div class="form-group">
                         {!! Form::label ('disciplinas[]', 'Disciplina: ',[ 'class'=>'control-label col-xs-2']) !!}
                         <div class="col-xs-5">
-                            {!! Form::select ('disciplinas[]', $disciplinas, $turma->disciplinas[$i]->id, ['class'=>'form-control']) !!}
+                            {!! Form::select ('disciplinas[]', $disciplinas, $disciplinaProfessor->disciplina_id, ['class'=>'form-control']) !!}
                         </div>
                     </div>
                     <div class="form-group">
                         {!! Form::label ('professores[]', 'Professor: ',[ 'class'=>'control-label col-xs-2']) !!}
                         <div class="col-xs-5">
-                            {!! Form::select ('professores[]', $professores, $turma->professores[$i]->id, ['class'=>'form-control']) !!}
+                            {!! Form::select ('professores[]', $professores, $disciplinaProfessor->professor_id, ['class'=>'form-control']) !!}
                         </div>
                     </div>
                     <div class="form-group">
@@ -48,7 +48,7 @@
                     </div>
                     <hr/>
                 </div>
-                    @endfor
+                    @endforeach
             </fildset>
             <div class="form-group">
                 <div class="col-xs-offset-2 col-xs-10">

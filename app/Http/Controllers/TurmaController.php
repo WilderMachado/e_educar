@@ -35,9 +35,11 @@ class TurmaController extends Controller
         $turma = Turma::create($request->all());
         $disciplinas = $request->disciplinas;
         $professores = $request->professores;
+        $disciplinaProfessor = array();
         for ($i = 0; $i < count($disciplinas); $i++) {
-            $turma->disciplinas()->attach($disciplinas[$i], ['professor_id' => $professores[$i]]);
+            $disciplinaProfessor[$disciplinas[$i]]=['professor_id'=>$professores[$i]];
         }
+        $turma->disciplinas()->attach($disciplinaProfessor);
         return redirect('turmas');
     }
 
@@ -47,18 +49,30 @@ class TurmaController extends Controller
         $anos = Ano::pluck('codigo', 'id');
         $disciplinas = Disciplina::orderBy('nome')->pluck('nome', 'id');
         $professores = Professor::orderBy('nome')->pluck('nome', 'id');
-        $turma = Turma::with(['ano', 'disciplinas', 'professores'])->find($id);
-        return view('turma.editar', compact('turma', 'turnos', 'anos', 'disciplinas', 'professores'));
+        $turma = Turma::with('ano', 'disciplinas', 'professores')->find($id);
+        $disciplinasProfessores=$turma->disciplinaProfessor()->get();
+        return view('turma.editar', compact('turma', 'turnos', 'anos', 'disciplinas', 'professores', 'disciplinasProfessores'));
     }
 
     public function alterar(TurmaRequest $request, $id)
     {
         $this->validate($request,
             ['codigo' => 'unique:turmas,codigo,' . $id]);
+        $turma = Turma::find($id);
+        $disciplinas = $request->disciplinas;
+        $professores = $request->professores;
+        $disciplinaProfessor = array();
+        for ($i = 0; $i < count($disciplinas); $i++) {
+            $disciplinaProfessor[$disciplinas[$i]]=['professor_id'=>$professores[$i]];
+        }
+        $turma->disciplinas()->sync($disciplinaProfessor);
+        $turma->update($request->all());
+        return redirect('turmas');
     }
 
     public function excluir($id)
     {
-
+        Turma::find($id)->delete();
+        return redirect('turmas');
     }
 }
