@@ -23,7 +23,7 @@ class AlunoController extends Controller
 
     public function novo()
     {
-        $turmas = Turma::all();
+        $turmas = Turma::orderBy('codigo')->pluck('codigo','id');
         return view('aluno.novo', compact('turmas'));
     }
 
@@ -34,7 +34,15 @@ class AlunoController extends Controller
                 'email' => 'unique:alunos,email',
             ]);
         $aluno = new Aluno($request->all());
-        $aluno->foto = ManipuladorArquivo::salvar($request->file('foto'), 'aluno', $aluno->nome);
+        $nome_aluno = $aluno->nome;
+        $imagem = $request->file('foto');
+
+        $nome_aluno .= '.' . $imagem->getClientOriginalExtension();
+        $diretorio = 'public/' . 'alunos';
+        $imagem->move($diretorio, $nome_aluno);
+        $aluno->foto = $diretorio . '/' . $nome_aluno;
+
+        //$aluno->foto = ManipuladorArquivo::salvar($request->file('foto'), 'aluno', $aluno->nome);
         $aluno->save();
         return redirect('alunos');
     }

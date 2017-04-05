@@ -23,6 +23,10 @@ Route::group(['prefix' => 'alunos', 'where' => ['id' => '[0-9]+']], function () 
     Route::get('', ['as' => 'alunos', 'uses' => 'AlunoController@index']);
     Route::get('novo', ['as' => 'alunos.novo', 'uses' => 'AlunoController@novo']);
     Route::post('salvar', ['as' => 'alunos.salvar', 'uses' => 'AlunoController@salvar']);
+
+    Route::get('{id}/editar', ['as' => 'alunos.editar', 'uses' => 'AlunoController@editar']);
+    Route::get('{id}/excluir', ['as' => 'alunos.excluir', 'uses' => 'AlunoController@excluir']);
+
 });
 Route::group(['prefix' => 'anos', 'where' => ['id' => '[0-9]+']], function () {
     Route::get('', ['as' => 'anos', 'uses' => 'AnoController@index']);
