@@ -26,7 +26,9 @@ class TurmaRequest extends FormRequest
         return [
             'codigo' =>'required',
             'turno'=>'required',
-            'ano_id'=>'required'
+            'ano_id'=>'required',
+            'disciplinas'=>'required|array|min:1',
+            'professores'=>'required|array|min:1'
         ];
     }
 }

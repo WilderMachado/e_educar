@@ -7,6 +7,10 @@
  */
 return [
     'roles' => ['responsavel', 'professor', 'admin'],
-    'turnos' => ['matutino', 'vespertino', 'noturno'],
+    'turnos' => [
+        'matutino'=>'Matutino',
+        'vespertino'=>'Vespertino',
+        'noturno'=>'Noturno'
+    ],
     'paginacao' => 10
 ];

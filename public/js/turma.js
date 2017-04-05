@@ -9,12 +9,14 @@ window.onload = function () {
         var novo = cloneDisciplinaProfessor.cloneNode(true);
         flsInclusao.appendChild(novo);
         novo.getElementsByClassName("btn-excluir-disciplina").item(0).addEventListener("click", function () {
+            if(confirm("Tem certeza que deseja remover?"))
             flsInclusao.removeChild(novo);
         });
     });
     var listaExcluir = document.getElementsByClassName("btn-excluir-disciplina");
     for (var i = 0; i < listaExcluir.length; i++) {
         listaExcluir.item(i).addEventListener("click", function () {
+            if(confirm("Tem certeza que deseja remover?"))
             this.parentNode.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode.parentNode);
         });
     }

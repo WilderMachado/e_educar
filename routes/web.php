@@ -75,6 +75,9 @@ Route::group(['prefix' => 'turmas', 'where' => ['id' => '[0-9]+']], function () 
     Route::get('', ['as' => 'turmas', 'uses' => 'TurmaController@index']);
     Route::get('novo', ['as' => 'turmas.novo', 'uses' => 'TurmaController@novo']);
     Route::post('salvar', ['as' => 'turmas.salvar', 'uses' => 'TurmaController@salvar']);
+    Route::get('{id}/editar', ['as' => 'turmas.editar', 'uses' => 'TurmaController@editar']);
+    Route::put('{id}/alterar', ['as' => 'turmas.alterar', 'uses' => 'TurmaController@alterar']);
+    Route::get('{id}/excluir', ['as' => 'turmas.excluir', 'uses' => 'TurmaController@excluir']);
 });
 
 /*Route::group(['prefix' => 'users', 'where' => ['id' => '[0-9]+']], function () {
