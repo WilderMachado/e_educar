@@ -32,15 +32,16 @@
                     @endif
                     <td>
                         @can('alterar', eeducar\Aluno::class)
-                        <a class="btn-floating blue tooltipped" data-tooltip="Editar"
+                        <a title="Editar"
                            href="{{ route('alunos.editar', ['id'=>$aluno->id]) }}">
-                            <i class="material-icons">mode_edit</i>
+                            <em class="glyphicon glyphicon-edit"></em>
                         </a>
                         @endcan
+
                         @can('excluir', eeducar\Aluno::class)
-                        <a class="btn-floating red btn-excluir"
+                        <a class="btn-excluir" title="Excluir"
                            href="{{ route('alunos.excluir', ['id'=>$aluno->id]) }}">
-                            <i class="material-icons">delete</i>
+                            <em class="glyphicon glyphicon-trash"></em>
                         </a>
                         @endcan
                     </td>
@@ -49,9 +50,8 @@
             </tbody>
             {!! $alunos->render() !!}
         </table>
-        <br/>
-        <br/>
         @can('salvar', eeducar\Aluno::class)
-        <a href="{{ route('alunos.novo')}}" class="btn btn-primary light-blue darken-3">Novo Aluno</a>
+        <a href="{{ route('alunos.novo')}}" class="btn btn-primary">Novo Aluno</a>
         @endcan
+        {!! Html::script('js/index.js') !!}
 @endsection

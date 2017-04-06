@@ -19,23 +19,23 @@
                     <td>{{$documento->titulo}}</td>
                     <td>
                         @if($documento->url !=null && $documento->url != '' )
-                            <a class="btn-floating grey darken-3 tooltipped" data-tooltip="Documento" target="_blank"
+                            <a title="Documento" target="_blank"
                                href="{{$documento->url}}">
-                                <i class="material-icons">visibility</i>
+                                <em class="glyphicon glyphicon-eye-open"></em>
                             </a>
                         @endif
                     </td>
                     <td>
                         @can('alterar', eeducar\Documento::class)
-                        <a class="btn-floating blue tooltipped" data-tooltip="Editar"
+                        <a title="Editar"
                            href="{{ route('documentos.editar', ['id'=>$documento->id]) }}">
-                            <i class="material-icons">mode_edit</i>
+                            <em class="glyphicon glyphicon-edit"></em>
                         </a>
                         @endcan
                         @can('excluir', eeducar\Documento::class)
-                        <a class="btn-floating red btn-excluir tooltipped" data-tooltip="Excluir"
+                        <a class="btn-excluir" title="Excluir"
                            href="{{ route('documentos.excluir', ['id'=>$documento->id]) }}">
-                            <i class="material-icons">delete</i>
+                            <em class="glyphicon glyphicon-trash"></em>
                         </a>
                         @endcan
                     </td>
@@ -47,6 +47,7 @@
         <br/>
         <br/>
         @can('salvar', eeducar\Documento::class)
-        <a href="{{ route('documentos.novo')}}" class="btn btn-primary light-blue darken-3"> Novo documento</a>
+        <a href="{{ route('documentos.novo')}}" class="btn btn-primary"> Novo documento</a>
         @endcan
+        {!! Html::script('js/index.js') !!}
 @endsection

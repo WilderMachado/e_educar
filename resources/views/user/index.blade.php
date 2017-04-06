@@ -22,15 +22,15 @@
                 <td>{{ $user->role }}</td>
                 <td>
                     @can('alterar', eeducar\User::class)
-                    <a class="btn-floating blue  tooltipped" data-tooltip="Editar"
+                    <a title="Editar"
                        href="{{ route('users.editar', ['id'=>$user->id]) }}">
-                        <i class="material-icons">mode_edit</i>
+                        <em class="glyphicon glyphicon-edit"></em>
                     </a>
                     @endcan
                     @can('excluir', eeducar\User::class)
-                    <a class="btn-floating red btn-excluir tooltipped" data-tooltip="Excluir"
+                    <a class="btn-excluir" title="Excluir"
                        href="{{ route('users.excluir', ['id'=>$user->id]) }}">
-                        <i class="material-icons">delete</i>
+                        <em class="glyphicon glyphicon-trash"></em>
                     </a>
                     @endcan
                 </td>
@@ -42,6 +42,7 @@
     <br/>
     <br/>
     @can('salvar', eeducar\User::class)
-    <a href="{{ route('users.novo')}}" class="btn btn-primary light-blue darken-3"> Novo usuário</a>
+    <a href="{{ route('users.novo')}}" class="btn btn-primary"> Novo usuário</a>
     @endcan
+    {!! Html::script('js/index.js') !!}
 @endsection

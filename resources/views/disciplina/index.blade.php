@@ -23,15 +23,15 @@
 
                     <td>
                         @can('alterar', eeducar\Disciplina::class)
-                        <a class="btn-floating blue tooltipped" data-tooltip="Editar"
+                        <a title="Editar"
                            href="{{ route('disciplinas.editar', ['id'=>$disciplina->id]) }}">
-                            <i class="material-icons">mode_edit</i>
+                            <em class="glyphicon glyphicon-edit"></em>
                         </a>
                         @endcan
                         @can('excluir', eeducar\Disciplina::class)
-                        <a class="btn-floating red btn-excluir tooltipped" data-tooltip="Excluir"
+                        <a class="btn-excluir" title="Excluir"
                            href="{{ route('disciplinas.excluir', ['id'=>$disciplina->id]) }}">
-                            <i class="material-icons">delete</i>
+                            <em class="glyphicon glyphicon-trash"></em>
                         </a>
                         @endcan
                     </td>
@@ -43,6 +43,7 @@
         <br/>
         <br/>
         @can('salvar', eeducar\Disciplina::class)
-        <a href="{{ route('disciplinas.novo')}}" class="btn btn-primary light-blue darken-3"> Nova disciplina</a>
+        <a href="{{ route('disciplinas.novo')}}" class="btn btn-primary"> Nova disciplina</a>
         @endcan
+        {!! Html::script('js/index.js') !!}
 @endsection

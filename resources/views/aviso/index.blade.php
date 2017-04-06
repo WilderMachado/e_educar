@@ -10,15 +10,15 @@
                 <label>{{'Data/Hora: '.date('d/m/Y H:i:s', strtotime($aviso->created_at))}}</label>
                 <textarea readonly class="materialize-textarea">{{$aviso->mensagem}}</textarea>
                 @can('alterar', eeducar\Aviso::class)
-                <a class="btn-floating blue tooltipped" data-tooltip="Editar"
+                <a title="Editar"
                    href="{{ route('avisos.editar', ['id'=>$aviso->id]) }}">
-                    <i class="material-icons">mode_edit</i>
+                    <em class="glyphicon glyphicon-edit"></em>
                 </a>
                 @endcan
                 @can('excluir', eeducar\Aviso::class)
-                <a class="btn-floating red btn-excluir tooltipped" data-tooltip="Excluir"
+                <a class="btn-excluir" title="Excluir"
                    href="{{ route('avisos.excluir', ['id'=>$aviso->id]) }}">
-                    <i class="material-icons">delete</i>
+                    <em class="glyphicon glyphicon-trash"></em>
                 </a>
                 @endcan
             </fieldset>
@@ -30,6 +30,7 @@
         <br/>
         <br/>
         @can('salvar', eeducar\Aviso::class)
-        <a href="{{ route('avisos.novo')}}" class="btn btn-primary light-blue darken-3">Novo aviso</a>
+        <a href="{{ route('avisos.novo')}}" class="btn btn-primary">Novo aviso</a>
         @endcan
+        {!! Html::script('js/index.js') !!}
 @endsection

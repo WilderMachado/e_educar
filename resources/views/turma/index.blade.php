@@ -24,15 +24,15 @@
                 <td>{{$turma->turno}}</td>
                 <td>
                     @can('alterar', eeducar\Turma::class)
-                    <a class="btn-floating blue tooltipped" data-tooltip="Editar"
+                    <a title="Editar"
                        href="{{ route('turmas.editar', ['id'=>$turma->id]) }}">
-                        <i class="material-icons">mode_edit</i>
+                        <em class="glyphicon glyphicon-edit"></em>
                     </a>
                     @endcan
                     @can('excluir', eeducar\Turma::class)
-                    <a class="btn-floating red btn-excluir tooltipped" data-tooltip="Excluir"
+                    <a class="btn-excluir" title="Excluir"
                        href="{{ route('turmas.excluir', ['id'=>$turma->id]) }}">
-                        <i class="material-icons">delete</i>
+                        <em class="glyphicon glyphicon-trash"></em>
                     </a>
                     @endcan
                 </td>
@@ -44,6 +44,7 @@
     <br/>
     <br/>
     @can('salvar', eeducar\Turma::class)
-    <a href="{{ route('turmas.novo')}}" class="btn btn-primary light-blue darken-3"> Nova Turma</a>
+    <a href="{{ route('turmas.novo')}}" class="btn btn-primary"> Nova Turma</a>
     @endcan
+    {!! Html::script('js/index.js') !!}
 @endsection

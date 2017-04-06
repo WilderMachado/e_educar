@@ -24,9 +24,9 @@
                     <td>{{ date('d/m/Y', strtotime($ano->termino)) }}</td>
                     <td>
                         @can('alterar', eeducar\Ano::class)
-                        <a class="btn-floating blue tooltipped" data-tooltip="Editar"
+                        <a title="Editar"
                            href="{{ route('anos.editar', ['codigo'=>$ano->id]) }}">
-                            <i class="material-icons">mode_edit</i>
+                            <em class="glyphicon glyphicon-edit"></em>
                         </a>
                         @endcan
                     </td>
@@ -39,6 +39,7 @@
         <br/>
         <br/>
         @can('salvar', eeducar\Ano::class)
-        <a href="{{ route('anos.novo')}}" class="btn btn-primary light-blue darken-3"> Novo Ano</a>
+        <a href="{{ route('anos.novo')}}" class="btn btn-primary"> Novo Ano</a>
         @endcan
+        {!! Html::script('js/index.js') !!}
 @endsection

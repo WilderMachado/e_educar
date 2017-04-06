@@ -18,15 +18,15 @@
                     <td>{{$pergunta->enunciado}}</td>
                     <td>
                         @can('alterar', eeducar\Pergunta::class)
-                        <a class="btn-floating blue tooltipped" data-tooltip="Editar"
+                        <a title="Editar"
                            href="{{ route('perguntas.editar', ['id'=>$pergunta->id]) }}">
-                            <i class="material-icons">mode_edit</i>
+                            <em class="glyphicon glyphicon-edit"></em>
                         </a>
                         @endcan
                         @can('excluir', eeducar\Pergunta::class)
-                        <a class="btn-floating red btn-excluir  tooltipped" data-tooltip="Excluir"
+                        <a class="btn-excluir" title="Excluir"
                            href="{{ route('perguntas.excluir', ['id'=>$pergunta->id]) }}">
-                            <i class="material-icons">delete</i>
+                            <em class="glyphicon glyphicon-trash"></em>
                         </a>
                         @endcan
                     </td>
@@ -38,6 +38,7 @@
         <br/>
         <br/>
         @can('salvar', eeducar\Pergunta::class)
-        <a href="{{ route('perguntas.novo')}}" class="btn btn-primary light-blue darken-3">Nova pergunta</a>
+        <a href="{{ route('perguntas.novo')}}" class="btn btn-primary">Nova pergunta</a>
         @endcan
+        {!! Html::script('js/index.js') !!}
 @endsection

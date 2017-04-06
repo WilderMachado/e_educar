@@ -23,22 +23,22 @@
                 <td>{{$professor->nome}}</td>
                 <td>
                     @if($professor->curriculo !=null && $professor->curriculo != '' )
-                        <a class="btn-floating grey darken-3 tooltipped" data-tooltip="Curriculo" target="_blank"
+                        <a title="Currículo" target="_blank"
                            href="{{ $professor->curriculo }}">
-                            <i class="material-icons">description</i>
+                            <em class="glyphicon glyphicon-eye-open" aria-hidden="true"></em>
                         </a>
                 @endif
                 <td>
-                    @can('alterar', eeducar\Professor::class)
-                    <a class="btn-floating blue tooltipped" data-tooltip="Editar"
+                    @can('alterar',eeducar\Professor::class)
+                    <a title="Editar"
                        href="{{ route('professores.editar', ['id'=>$professor->id]) }}">
-                        <i class="material-icons">mode_edit</i>
+                        <em class="glyphicon glyphicon-edit"></em>
                     </a>
                     @endcan
-                    @can('excluir', eeducar\Professor::class)
-                    <a class="btn-floating red btn-excluir tooltipped" data-tooltip="Excluir"
+                    @can('excluir',eeducar\Professor::class)
+                    <a class="btn-excluir" title="Excluir"
                        href="{{ route('professores.excluir', ['id'=>$professor->id]) }}">
-                        <i class="material-icons">delete</i>
+                        <em class="glyphicon glyphicon-trash"></em>
                     </a>
                     @endcan
                 </td>
@@ -47,9 +47,8 @@
         </tbody>
         {!! $professores->render() !!}
     </table>
-    <br/>
-    <br/>
     @can('salvar', eeducar\Professor::class)
-    <a href="{{ route('professores.novo')}}" class="btn btn-primary light-blue darken-3"> Novo professor</a>
+    <a href="{{ route('professores.novo')}}" class="btn btn-primary"> Novo professor</a>
     @endcan
+    {!! Html::script('js/index.js') !!}
 @endsection

@@ -23,21 +23,21 @@
                     <td>{{ date('d/m/Y', strtotime($avaliacao->termino)) }}</td>
                     <td>
                         @can('alterar', eeducar\Avaliacao::class)
-                        <a class="btn-floating blue tooltipped" data-tooltip="Editar"
+                        <a title="Editar"
                            href="{{ route('avaliacoes.editar', ['id'=>$avaliacao->id]) }}">
-                            <i class="material-icons">mode_edit</i>
+                            <em class="glyphicon glyphicon-edit"></em>
                         </a>
                         @endcan
                         @can('excluir', eeducar\Avaliacao::class)
-                        <a class="btn-floating red btn-excluir tooltipped" data-tooltip="Excluir"
+                        <a class="btn-excluir" title="Excluir"
                            href="{{ route('avaliacoes.excluir', ['id'=>$avaliacao->id]) }}">
-                            <i class="material-icons">delete</i>
+                            <em class="glyphicon glyphicon-trash"></em>
                         </a>
                         @endcan
                         @can('relatorio', eeducar\Avaliacao::class)
-                        <a class="btn-floating grey darken-3 tooltipped" data-tooltip="Relatório" target="_blank"
+                        <a title="Relatório" target="_blank"
                            href="{{ route('avaliacoes.relatorio', ['id'=>$avaliacao->id]) }}">
-                            <i class="material-icons">description</i>
+                            <em class="glyphicon glyphicon-list-alt"></em>
                         </a>
                         @endcan
                     </td>
@@ -53,6 +53,7 @@
         <br/>
         <br/>
         @can('salvar', eeducar\Avaliacao::class)
-        <a href="{{ route('avaliacoes.novo')}}" class="btn btn-primary light-blue darken-3"> Nova avaliação</a>
+        <a href="{{ route('avaliacoes.novo')}}" class="btn btn-primary"> Nova avaliação</a>
         @endcan
+        {!! Html::script('js/index.js') !!}
 @endsection
