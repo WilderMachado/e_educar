@@ -7,6 +7,7 @@
 
             <thead>
             <tr>
+                <th>Foto</th>
                 <th>Matrícula</th>
                 <th>Nome</th>
                 <th>Turma</th>
@@ -20,6 +21,8 @@
             @foreach($alunos as $aluno)
 
                 <tr>
+                    <td align="center">{{Html::image($aluno->foto,$aluno->nome,
+                                    array('class'=>'img-rounded','width' => 70, 'height' => 70 ))}}</td>
                     <td>{{$aluno->matricula}}</td>
                     <td>{{$aluno->nome}}</td>
                     <td>{{$aluno->turma->codigo}}</td>
