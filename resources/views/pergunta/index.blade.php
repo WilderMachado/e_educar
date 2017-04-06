@@ -3,7 +3,7 @@
         <div class="card-panel  #388e3c green darken-2 center">
             <span class=" grey-text text-lighten-5">Perguntas</span>
         </div>
-        <table class="highlight  responsive-table">
+        <table class="table">
             <thead>
             <tr>
                 <th>Enunciado</th>
@@ -35,8 +35,6 @@
             </tbody>
             {!! $perguntas->render() !!}
         </table>
-        <br/>
-        <br/>
         @can('salvar', eeducar\Pergunta::class)
         <a href="{{ route('perguntas.novo')}}" class="btn btn-primary">Nova pergunta</a>
         @endcan

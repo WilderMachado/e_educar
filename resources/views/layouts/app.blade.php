@@ -64,7 +64,7 @@
                         <li><a href="{{route('alunos')}}">Alunos</a></li>
                         @endcan
                         @can('visualizar',eeducar\Documento::class)
-                        <li><a href="{{route('documentos')}}">documentos</a></li>
+                        <li><a href="{{route('documentos')}}">Documentos</a></li>
                         @endcan
                     </ul>
                 </div>

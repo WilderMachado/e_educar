@@ -29,7 +29,7 @@
                         <em class="glyphicon glyphicon-edit"></em>
                     </a>
                     @endcan
-                    @can('excluir', eeducar\Turma::class)
+                    @can('excluir', $turma)
                     <a class="btn-excluir" title="Excluir"
                        href="{{ route('turmas.excluir', ['id'=>$turma->id]) }}">
                         <em class="glyphicon glyphicon-trash"></em>
@@ -41,8 +41,6 @@
         </tbody>
         {!! $turmas->render() !!}
     </table>
-    <br/>
-    <br/>
     @can('salvar', eeducar\Turma::class)
     <a href="{{ route('turmas.novo')}}" class="btn btn-primary"> Nova Turma</a>
     @endcan

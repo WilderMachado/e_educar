@@ -50,8 +50,6 @@
             </tbody>
             {!! $avaliacoes->render() !!}
         </table>
-        <br/>
-        <br/>
         @can('salvar', eeducar\Avaliacao::class)
         <a href="{{ route('avaliacoes.novo')}}" class="btn btn-primary"> Nova avaliação</a>
         @endcan

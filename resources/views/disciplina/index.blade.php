@@ -40,8 +40,6 @@
             </tbody>
             {!! $disciplinas->render() !!}
         </table>
-        <br/>
-        <br/>
         @can('salvar', eeducar\Disciplina::class)
         <a href="{{ route('disciplinas.novo')}}" class="btn btn-primary"> Nova disciplina</a>
         @endcan

@@ -44,8 +44,6 @@
             </tbody>
             {!! $documentos->render() !!}
         </table>
-        <br/>
-        <br/>
         @can('salvar', eeducar\Documento::class)
         <a href="{{ route('documentos.novo')}}" class="btn btn-primary"> Novo documento</a>
         @endcan

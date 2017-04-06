@@ -2,6 +2,7 @@
 
 namespace eeducar\Policies;
 
+use eeducar\Turma;
 use eeducar\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -24,9 +25,9 @@ class TurmaPolicy
         return $user->role == 'admin';
     }
 
-    public function excluir(User $user)
+    public function excluir(User $user, Turma $turma)
     {
-        return $user->role == 'admin';
+        return $user->role == 'admin' && $turma->alunos->isEmpty();
     }
 
     public function acao(User $user)

@@ -39,10 +39,20 @@ Route::group(['prefix' => 'anos', 'where' => ['id' => '[0-9]+']], function () {
 
 Route::group(['prefix' => 'avaliacoes', 'where' => ['id' => '[0-9]+']], function () {
     Route::get('', ['as' => 'avaliacoes', 'uses' => 'AvaliacaoController@index']);
+    Route::get('novo', ['as' => 'avaliacoes.novo', 'uses' => 'AvaliacaoController@novo']);
+    Route::post('salvar', ['as' => 'avaliacoes.salvar', 'uses' => 'AvaliacaoController@salvar']);
+    Route::get('{id}/editar', ['as' => 'avaliacoes.editar', 'uses' => 'AvaliacaoController@editar']);
+    Route::put('{id}/alterar', ['as' => 'avaliacoes.alterar', 'uses' => 'AvaliacaoController@alterar']);
+    Route::get('{id}/excluir', ['as' => 'avaliacoes.excluir', 'uses' => 'AvaliacaoController@excluir']);
 });
 
 Route::group(['prefix' => 'avisos', 'where' => ['id' => '[0-9]+']], function () {
     Route::get('', ['as' => 'avisos', 'uses' => 'AvisoController@index']);
+    Route::get('novo', ['as' => 'avisos.novo', 'uses' => 'AvisoController@novo']);
+    Route::post('salvar', ['as' => 'avisos.salvar', 'uses' => 'AvisoController@salvar']);
+    Route::get('{id}/editar', ['as' => 'avisos.editar', 'uses' => 'AvisoController@editar']);
+    Route::put('{id}/alterar', ['as' => 'avisos.alterar', 'uses' => 'AvisoController@alterar']);
+    Route::get('{id}/excluir', ['as' => 'avisos.excluir', 'uses' => 'AvisoController@excluir']);
 });
 
 Route::group(['prefix' => 'disciplinas', 'where' => ['id' => '[0-9]+']], function () {
@@ -56,10 +66,20 @@ Route::group(['prefix' => 'disciplinas', 'where' => ['id' => '[0-9]+']], functio
 
 Route::group(['prefix' => 'documentos', 'where' => ['id' => '[0-9]+']], function () {
     Route::get('', ['as' => 'documentos', 'uses' => 'DocumentoController@index']);
+    Route::get('novo', ['as' => 'documentos.novo', 'uses' => 'DocumentoController@novo']);
+    Route::post('salvar', ['as' => 'documentos.salvar', 'uses' => 'DocumentoController@salvar']);
+    Route::get('{id}/editar', ['as' => 'documentos.editar', 'uses' => 'DocumentoController@editar']);
+    Route::put('{id}/alterar', ['as' => 'documentos.alterar', 'uses' => 'DocumentoController@alterar']);
+    Route::get('{id}/excluir', ['as' => 'documentos.excluir', 'uses' => 'DocumentoController@excluir']);
 });
 
 Route::group(['prefix' => 'perguntas', 'where' => ['id' => '[0-9]+']], function () {
     Route::get('', ['as' => 'perguntas', 'uses' => 'PerguntaController@index']);
+    Route::get('novo', ['as' => 'perguntas.novo', 'uses' => 'PerguntaController@novo']);
+    Route::post('salvar', ['as' => 'perguntas.salvar', 'uses' => 'PerguntaController@salvar']);
+    Route::get('{id}/editar', ['as' => 'perguntas.editar', 'uses' => 'PerguntaController@editar']);
+    Route::put('{id}/alterar', ['as' => 'perguntas.alterar', 'uses' => 'PerguntaController@alterar']);
+    Route::get('{id}/excluir', ['as' => 'perguntas.excluir', 'uses' => 'PerguntaController@excluir']);
 });
 
 Route::group(['prefix' => 'professores', 'where' => ['id' => '[0-9]+']], function () {

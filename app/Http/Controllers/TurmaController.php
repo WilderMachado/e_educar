@@ -7,6 +7,7 @@ use eeducar\Disciplina;
 use eeducar\Http\Requests\TurmaRequest;
 use eeducar\Professor;
 use eeducar\Turma;
+use Illuminate\Support\Facades\Auth;
 
 class TurmaController extends Controller
 {
@@ -72,7 +73,11 @@ class TurmaController extends Controller
 
     public function excluir($id)
     {
-        Turma::find($id)->delete();
+        $turma = Turma::find($id);
+        if (Auth::user()->cant('excluir', $turma)):
+            abort(403);
+        endif;
+        $turma->delete();
         return redirect('turmas');
     }
 }

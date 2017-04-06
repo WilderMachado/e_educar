@@ -39,8 +39,6 @@
         </tbody>
         {!! $users->render() !!}
     </table>
-    <br/>
-    <br/>
     @can('salvar', eeducar\User::class)
     <a href="{{ route('users.novo')}}" class="btn btn-primary"> Novo usuário</a>
     @endcan

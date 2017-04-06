@@ -36,8 +36,6 @@
             </tbody>
             {!! $anos->render() !!}
         </table>
-        <br/>
-        <br/>
         @can('salvar', eeducar\Ano::class)
         <a href="{{ route('anos.novo')}}" class="btn btn-primary"> Novo Ano</a>
         @endcan
