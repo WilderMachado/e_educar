@@ -44,9 +44,9 @@ class AnoController extends Controller
         return redirect('anos');
     }
 
-    public function excluir($id)
+    /*public function excluir($id)
     {
         Ano::find($id)->delete();
         return redirect('anos');
-    }
+    }*/
 }

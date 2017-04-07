@@ -24,7 +24,8 @@ class DocumentoRequest extends FormRequest
     public function rules()
     {
         return [
-            'titulo' => 'required|max:50'
+            'titulo' => 'required|max:50',
+            'arquivo' => 'file'
         ];
     }
 }

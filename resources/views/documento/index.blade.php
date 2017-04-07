@@ -18,7 +18,7 @@
                 <tr>
                     <td>{{$documento->titulo}}</td>
                     <td>
-                        @if($documento->url !=null && $documento->url != '' )
+                       @if($documento->url !=null && $documento->url != '' )
                             <a title="Documento" target="_blank"
                                href="{{$documento->url}}">
                                 <em class="glyphicon glyphicon-eye-open"></em>

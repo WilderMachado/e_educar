@@ -21,7 +21,7 @@ class ManipuladorArquivo
     {
         if ($arquivo != null):                                      //Se arquivo passado não for nulo
             $nome .= '.' . $arquivo->getClientOriginalExtension();  //Acrescenta ao nome do arquivo sua extensão
-            $diretorio = 'public/' . $pasta;                        //Define o local onde arquivo será salvo
+            $diretorio = 'arquivos/' . $pasta;                        //Define o local onde arquivo será salvo
             $arquivo->move($diretorio, $nome);                      //Salva arquivo
             return $diretorio . '/' . $nome;                        //Retorna o caminho do arquivo
         endif;

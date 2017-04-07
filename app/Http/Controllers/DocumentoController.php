@@ -3,6 +3,7 @@
 namespace eeducar\Http\Controllers;
 
 use eeducar\Documento;
+use eeducar\Http\ManipuladorArquivo;
 use eeducar\Http\Requests\DocumentoRequest;
 
 class DocumentoController extends Controller
@@ -21,9 +22,14 @@ class DocumentoController extends Controller
         return view('documento.novo');
     }
 
-    public function salvar()
+    public function salvar(DocumentoRequest $request)
     {
-
+        $this->validate($request,
+            ['arquivo'=>'required']);
+        $documento = new Documento($request->all());
+        $documento->url = ManipuladorArquivo::salvar($request->file('arquivo'),'documentos', $documento->titulo);
+        $documento->save();
+        return redirect('documentos');
     }
 
     public function editar($id)
@@ -38,6 +44,11 @@ class DocumentoController extends Controller
 
     public function excluir($id)
     {
-
+        $documento = Documento::find($id);
+        ManipuladorArquivo::excluir($documento->url);
+        $documento->url = '';
+        $documento->save();
+        $documento->delete();
+        return redirect('documentos');
     }
 }
