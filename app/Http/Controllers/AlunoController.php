@@ -34,15 +34,15 @@ class AlunoController extends Controller
                 'email' => 'unique:alunos,email',
             ]);
         $aluno = new Aluno($request->all());
-        $nome_aluno = $aluno->nome;
+       /* $codigo_aluno = $aluno->codigo;
         $imagem = $request->file('foto');
 
-        $nome_aluno .= '.' . $imagem->getClientOriginalExtension();
+        $codigo_aluno .= '.' . $imagem->getClientOriginalExtension();
         $diretorio = 'public/' . 'alunos';
-        $imagem->move($diretorio, $nome_aluno);
-        $aluno->foto = $diretorio . '/' . $nome_aluno;
+        $imagem->move($diretorio, $codigo_aluno);
+        $aluno->foto = $diretorio . '/' . $codigo_aluno;*/
 
-        //$aluno->foto = ManipuladorArquivo::salvar($request->file('foto'), 'aluno', $aluno->nome);
+        $aluno->foto = ManipuladorArquivo::salvar($request->file('foto'), 'aluno', $aluno->codigo);
         $aluno->save();
         return redirect('alunos');
     }
