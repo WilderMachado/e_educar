@@ -46,12 +46,12 @@ Route::group(['prefix' => 'avaliacoes', 'where' => ['id' => '[0-9]+']], function
 });
 
 Route::group(['prefix' => 'avisos', 'where' => ['id' => '[0-9]+']], function () {
-    Route::get('', ['as' => 'avisos', 'uses' => 'AvisoController@index']);
-    Route::get('novo', ['as' => 'avisos.novo', 'uses' => 'AvisoController@novo']);
-    Route::post('salvar', ['as' => 'avisos.salvar', 'uses' => 'AvisoController@salvar']);
-    Route::get('{id}/editar', ['as' => 'avisos.editar', 'uses' => 'AvisoController@editar']);
-    Route::put('{id}/alterar', ['as' => 'avisos.alterar', 'uses' => 'AvisoController@alterar']);
-    Route::get('{id}/excluir', ['as' => 'avisos.excluir', 'uses' => 'AvisoController@excluir']);
+    Route::get('', ['as' => 'avisos', 'uses' => 'AvisoController@index'])->middleware('can:visualizar,eeducar\Aviso');
+    Route::get('novo', ['as' => 'avisos.novo', 'uses' => 'AvisoController@novo'])->middleware('can:salvar,eeducar\Aviso');
+    Route::post('salvar', ['as' => 'avisos.salvar', 'uses' => 'AvisoController@salvar'])->middleware('can:salvar,eeducar\Aviso');
+    Route::get('{id}/editar', ['as' => 'avisos.editar', 'uses' => 'AvisoController@editar'])->middleware('can:alterar,eeducar\Aviso');
+    Route::put('{id}/alterar', ['as' => 'avisos.alterar', 'uses' => 'AvisoController@alterar'])->middleware('can:alterar,eeducar\Aviso');
+    Route::get('{id}/excluir', ['as' => 'avisos.excluir', 'uses' => 'AvisoController@excluir'])->middleware('can:excluir,eeducar\Aviso');
 });
 
 Route::group(['prefix' => 'disciplinas', 'where' => ['id' => '[0-9]+']], function () {

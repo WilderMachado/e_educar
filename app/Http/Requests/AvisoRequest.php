@@ -25,7 +25,8 @@ class AvisoRequest extends FormRequest
     {
         return [
             'titulo'=>'required|min:5|max:20',
-            'mensagem'=>'required|min:5|max:255'
+            'mensagem'=>'required|min:5|max:255',
+            'turmas'=>'required|array|min:1'
         ];
     }
 }
