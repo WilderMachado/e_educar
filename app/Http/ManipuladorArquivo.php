@@ -19,9 +19,9 @@ class ManipuladorArquivo
      */
     public static function salvar($arquivo, $pasta, $nome)
     {
-        if ($arquivo != null):                                      //Se arquivo passado não for nulo
+        if ($arquivo):                                              //Se arquivo passado não for nulo
             $nome .= '.' . $arquivo->getClientOriginalExtension();  //Acrescenta ao nome do arquivo sua extensão
-            $diretorio = 'arquivos/' . $pasta;                        //Define o local onde arquivo será salvo
+            $diretorio = 'arquivos/' . $pasta;                      //Define o local onde arquivo será salvo
             $arquivo->move($diretorio, $nome);                      //Salva arquivo
             return $diretorio . '/' . $nome;                        //Retorna o caminho do arquivo
         endif;

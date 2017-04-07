@@ -25,21 +25,30 @@ class DocumentoController extends Controller
     public function salvar(DocumentoRequest $request)
     {
         $this->validate($request,
-            ['arquivo'=>'required']);
+            ['arquivo' => 'required']);
         $documento = new Documento($request->all());
-        $documento->url = ManipuladorArquivo::salvar($request->file('arquivo'),'documentos', $documento->titulo);
+        $documento->url = ManipuladorArquivo::salvar($request->file('arquivo'), 'documentos', $documento->titulo);
         $documento->save();
         return redirect('documentos');
     }
 
     public function editar($id)
     {
-
+        $documento = Documento::find($id);
+        return view('documento.editar', compact('documento'));
     }
 
     public function alterar(DocumentoRequest $request, $id)
     {
-
+        $documento = Documento::find($id);
+        $documento->fill($request->all());
+        $url = ManipuladorArquivo::salvar($request->file('arquivo'), 'documentos', $documento->titulo);
+        if ($url != null && $url != $documento->url):
+            ManipuladorArquivo::excluir($documento->url);
+            $documento->url = $url;
+        endif;
+        $documento->save();
+        return redirect('documentos');
     }
 
     public function excluir($id)
