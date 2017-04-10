@@ -22,11 +22,12 @@ class TurmaController extends Controller
 
     public function novo()
     {
+        $niveis = config('constantes.niveis');
         $turnos = config('constantes.turnos');
         $anos = Ano::pluck('codigo', 'id');
         $disciplinas = Disciplina::orderBy('nome')->pluck('nome', 'id');
         $professores = Professor::orderBy('nome')->pluck('nome', 'id');
-        return view('turma.novo', compact('turnos', 'anos', 'disciplinas', 'professores'));
+        return view('turma.novo', compact('niveis','turnos', 'anos', 'disciplinas', 'professores'));
     }
 
     public function salvar(TurmaRequest $request)
@@ -46,13 +47,14 @@ class TurmaController extends Controller
 
     public function editar($id)
     {
+        $niveis = config('constantes.niveis');
         $turnos = config('constantes.turnos');
         $anos = Ano::pluck('codigo', 'id');
         $disciplinas = Disciplina::orderBy('nome')->pluck('nome', 'id');
         $professores = Professor::orderBy('nome')->pluck('nome', 'id');
         $turma = Turma::with('ano', 'disciplinas', 'professores')->find($id);
         $disciplinasProfessores=$turma->disciplinaProfessor()->get();
-        return view('turma.editar', compact('turma', 'turnos', 'anos', 'disciplinas', 'professores', 'disciplinasProfessores'));
+        return view('turma.editar', compact('niveis','turma', 'turnos', 'anos', 'disciplinas', 'professores', 'disciplinasProfessores'));
     }
 
     public function alterar(TurmaRequest $request, $id)

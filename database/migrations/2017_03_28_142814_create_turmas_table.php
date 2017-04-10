@@ -15,7 +15,10 @@ class CreateTurmasTable extends Migration
     {
         Schema::create('turmas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('codigo',6);
+            $table->string('codigo',10);
+            $table->string('descricao',50);
+            $table->string('nivel',20);
+            $table->string('serie',20);
             $table->enum('turno', ['matutino','vespertino','noturno']);
             $table->unsignedInteger('ano_id');
             $table->timestamps();

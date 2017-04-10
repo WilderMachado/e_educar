@@ -24,7 +24,10 @@ class TurmaRequest extends FormRequest
     public function rules()
     {
         return [
-            'codigo' =>'required',
+            'codigo' =>'required|between:6,10',
+            'descricao' => 'required|max:50',
+            'nivel' => 'required|max:20',
+            'serie' => 'required|max:20',
             'turno'=>'required',
             'ano_id'=>'required',
             'disciplinas'=>'required|array|min:1',

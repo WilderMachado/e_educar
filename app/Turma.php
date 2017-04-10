@@ -11,7 +11,7 @@ class Turma extends Model
     use SoftDeletes;
 
     protected $softDelete = true;
-    protected $fillable = ['codigo', 'turno', 'ano_id'];
+    protected $fillable = ['codigo', 'descricao', 'nivel','serie','turno', 'ano_id'];
     protected $hidden = ['deleted_at'];
 
     public function ano()

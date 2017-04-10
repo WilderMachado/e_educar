@@ -24,7 +24,7 @@ class ProfessorRequest extends FormRequest
     public function rules()
     {
         return [
-            'matricula' => 'required|min:6',
+            'matricula' => 'required|max:6',
             'nome' => 'required|min:5',
             'email'=>'required|email',
             'curriculo' => 'nullable|url'

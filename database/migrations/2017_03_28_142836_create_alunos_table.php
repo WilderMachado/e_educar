@@ -17,12 +17,14 @@ class CreateAlunosTable extends Migration
             $table->increments('id');
             $table->string('matricula', 10)->unique();
             $table->string('nome', 60);
-            $table->string('email', 100);
+            $table->string('email', 100)->unique();
             $table->string('foto');
             $table->unsignedInteger('turma_id');
+            $table->unsignedInteger('responsavel_id');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('turma_id')->references('id')->on('turmas');
+            $table->foreign('responsavel_id')->references('id')->on('users');
         });
     }
 

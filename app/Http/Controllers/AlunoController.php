@@ -6,6 +6,7 @@ use eeducar\Aluno;
 use eeducar\Http\ManipuladorArquivo;
 use eeducar\Http\Requests\AlunoRequest;
 use eeducar\Turma;
+use eeducar\User;
 
 
 class AlunoController extends Controller
@@ -24,7 +25,8 @@ class AlunoController extends Controller
     public function novo()
     {
         $turmas = Turma::orderBy('codigo')->pluck('codigo','id');
-        return view('aluno.novo', compact('turmas'));
+        $responsaveis = User::where('role','responsavel')->orderBy('name')->pluck('name','id');
+        return view('aluno.novo', compact('turmas','responsaveis'));
     }
 
     public function salvar(AlunoRequest $request)

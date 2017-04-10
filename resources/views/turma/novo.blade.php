@@ -14,15 +14,33 @@
                 </div>
             </div>
             <div class="form-group">
+                {!! Form::label ('descricao', 'Descrição: ',[ 'class'=>'control-label col-xs-2']) !!}
+                <div class="col-xs-5">
+                    {!! Form::text ('descricao', null, ['class'=>'form-control']) !!}
+                </div>
+            </div>
+            <div class="form-group">
+                {!! Form::label ('nivel', 'Nível: ',[ 'class'=>'control-label col-xs-2']) !!}
+                <div class="col-xs-5">
+                    {!! Form::select ('nivel', $niveis, null, ['class'=>'form-control', 'placeholder'=>'']) !!}
+                </div>
+            </div>
+            <div class="form-group">
+                {!! Form::label ('serie', 'Série: ',[ 'class'=>'control-label col-xs-2']) !!}
+                <div class="col-xs-5">
+                    {!! Form::text ('serie', null, ['class'=>'form-control']) !!}
+                </div>
+            </div>
+            <div class="form-group">
                 {!! Form::label ('turno', 'Turno: ',[ 'class'=>'control-label col-xs-2']) !!}
                 <div class="col-xs-5">
-                    {!! Form::select ('turno', $turnos, null, ['class'=>'form-control']) !!}
+                    {!! Form::select ('turno', $turnos, null, ['class'=>'form-control', 'placeholder'=>'']) !!}
                 </div>
             </div>
             <div class="form-group">
                 {!! Form::label ('ano_id', 'Ano: ',[ 'class'=>'control-label col-xs-2']) !!}
                 <div class="col-xs-5">
-                    {!! Form::select ('ano_id', $anos, null, ['class'=>'form-control']) !!}
+                    {!! Form::select ('ano_id', $anos, null, ['class'=>'form-control', 'placeholder'=>'']) !!}
                 </div>
             </div>
             <fildset id="inclusao">
@@ -31,16 +49,15 @@
                     <div class="form-group">
                         {!! Form::label ('disciplinas[]', 'Disciplina: ',[ 'class'=>'control-label col-xs-2']) !!}
                         <div class="col-xs-5">
-                            {!! Form::select ('disciplinas[]', $disciplinas, null, ['class'=>'form-control']) !!}
+                            {!! Form::select ('disciplinas[]', $disciplinas, null, ['class'=>'form-control', 'placeholder'=>'']) !!}
                         </div>
                     </div>
                     <div class="form-group">
                         {!! Form::label ('professores[]', 'Professor: ',[ 'class'=>'control-label col-xs-2']) !!}
                         <div class="col-xs-5">
-                            {!! Form::select ('professores[]', $professores, null, ['class'=>'form-control']) !!}
+                            {!! Form::select ('professores[]', $professores, null, ['class'=>'form-control', 'placeholder'=>'']) !!}
                         </div>
                     </div>
-
                     <div class="form-group">
                         <div class="col-xs-offset-2 col-xs-10">
                             {!! Form::button('Excluir Disciplina', ['class'=>'btn btn-primary light-blue btn-excluir-disciplina']) !!}

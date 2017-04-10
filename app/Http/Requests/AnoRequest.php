@@ -24,7 +24,7 @@ class AnoRequest extends FormRequest
     public function rules()
     {
         return [
-            'codigo' => 'required|size:6',
+            'codigo' => 'required|between:4,6',
             'inicio' => 'required|date',
             'termino' => 'required|date|after:inicio'
         ];

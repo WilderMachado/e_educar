@@ -14,41 +14,59 @@
                 </div>
             </div>
             <div class="form-group">
+                {!! Form::label ('descricao', 'Descrição: ',[ 'class'=>'control-label col-xs-2']) !!}
+                <div class="col-xs-5">
+                    {!! Form::text ('descricao', $turma->descricao, ['class'=>'form-control']) !!}
+                </div>
+            </div>
+            <div class="form-group">
+                {!! Form::label ('nivel', 'Nível: ',[ 'class'=>'control-label col-xs-2']) !!}
+                <div class="col-xs-5">
+                    {!! Form::select ('nivel', $niveis, $turma->nivel, ['class'=>'form-control', 'placeholder'=>'']) !!}
+                </div>
+            </div>
+            <div class="form-group">
+                {!! Form::label ('serie', 'Série: ',[ 'class'=>'control-label col-xs-2']) !!}
+                <div class="col-xs-5">
+                    {!! Form::text ('serie', $turma->serie, ['class'=>'form-control']) !!}
+                </div>
+            </div>
+            <div class="form-group">
                 {!! Form::label ('turno', 'Turno: ',[ 'class'=>'control-label col-xs-2']) !!}
                 <div class="col-xs-5">
-                    {!! Form::select ('turno', $turnos, $turma->turno, ['class'=>'form-control']) !!}
+                    {!! Form::select ('turno', $turnos, $turma->turno, ['class'=>'form-control','placeholder'=>'']) !!}
                 </div>
             </div>
             <div class="form-group">
                 {!! Form::label ('ano_id', 'Ano: ',[ 'class'=>'control-label col-xs-2']) !!}
                 <div class="col-xs-5">
-                    {!! Form::select ('ano_id', $anos, $turma->ano_id, ['class'=>'form-control']) !!}
+                    {!! Form::select ('ano_id', $anos, $turma->ano_id, ['class'=>'form-control','placeholder'=>'']) !!}
                 </div>
             </div>
             <fildset id="inclusao">
                 <legend>Disciplinas</legend>
                 @foreach($disciplinasProfessores as $disciplinaProfessor)
-                <div class="disciplina-professor">
-                    <div class="form-group">
-                        {!! Form::label ('disciplinas[]', 'Disciplina: ',[ 'class'=>'control-label col-xs-2']) !!}
-                        <div class="col-xs-5">
-                            {!! Form::select ('disciplinas[]', $disciplinas, $disciplinaProfessor->disciplina_id, ['class'=>'form-control']) !!}
+                    <div class="disciplina-professor">
+                        <div class="form-group">
+                            {!! Form::label ('disciplinas[]', 'Disciplina: ',[ 'class'=>'control-label col-xs-2']) !!}
+                            <div class="col-xs-5">
+                                {!! Form::select ('disciplinas[]', $disciplinas, $disciplinaProfessor->disciplina_id, ['class'=>'form-control','placeholder'=>'']) !!}
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label ('professores[]', 'Professor: ',[ 'class'=>'control-label col-xs-2']) !!}
-                        <div class="col-xs-5">
-                            {!! Form::select ('professores[]', $professores, $disciplinaProfessor->professor_id, ['class'=>'form-control']) !!}
+                        <div class="form-group">
+                            {!! Form::label ('professores[]', 'Professor: ',[ 'class'=>'control-label col-xs-2']) !!}
+                            <div class="col-xs-5">
+                                {!! Form::select ('professores[]', $professores, $disciplinaProfessor->professor_id, ['class'=>'form-control','placeholder'=>'']) !!}
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-offset-2 col-xs-10">
-                            {!! Form::button('Excluir Disciplina', ['class'=>'btn btn-primary light-blue btn-excluir-disciplina']) !!}
+                        <div class="form-group">
+                            <div class="col-xs-offset-2 col-xs-10">
+                                {!! Form::button('Excluir Disciplina', ['class'=>'btn btn-primary light-blue btn-excluir-disciplina']) !!}
+                            </div>
                         </div>
+                        <hr/>
                     </div>
-                    <hr/>
-                </div>
-                    @endforeach
+                @endforeach
             </fildset>
             <div class="form-group">
                 <div class="col-xs-offset-2 col-xs-10">

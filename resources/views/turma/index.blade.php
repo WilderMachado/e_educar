@@ -8,20 +8,21 @@
         <thead>
         <tr>
             <th>Código</th>
-            <th>Ano</th>
+            <th>Descrição</th>
             <th>Turno</th>
+            <th>Ano</th>
             @can('acao', eeducar\Turma::class)
             <th>Ação</th>
             @endcan
         </tr>
         </thead>
-
         <tbody>
         @foreach($turmas as $turma)
             <tr>
                 <td>{{$turma->codigo}}</td>
-                <td>{{$turma->ano->codigo}}</td>
+                <td>{{$turma->descricao}}</td>
                 <td>{{$turma->turno}}</td>
+                <td>{{$turma->ano->codigo}}</td>
                 <td>
                     @can('alterar', eeducar\Turma::class)
                     <a title="Editar"
