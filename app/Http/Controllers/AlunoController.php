@@ -36,13 +36,6 @@ class AlunoController extends Controller
                 'email' => 'unique:alunos,email',
             ]);
         $aluno = new Aluno($request->all());
-       /* $codigo_aluno = $alunos->codigo;
-        $imagem = $request->file('foto');
-
-        $codigo_aluno .= '.' . $imagem->getClientOriginalExtension();
-        $diretorio = 'public/' . 'alunos';
-        $imagem->move($diretorio, $codigo_aluno);
-        $alunos->foto = $diretorio . '/' . $codigo_aluno;*/
 
         $aluno->foto = ManipuladorArquivo::salvar($request->file('foto'), 'alunos', $aluno->matricula);
         $aluno->save();
@@ -51,16 +44,34 @@ class AlunoController extends Controller
 
     public function editar($id)
     {
+        $turmas = Turma::orderBy('codigo')->pluck('codigo','id');
+        //$turmas = Turma::find(Aluno::find($id))->pluck('codigo','id');
+       $responsaveis = User::where('role','responsavel')->orderBy('name')->pluck('name','id');
+       // $responsaveis = User::find(Aluno::find($id))->orderBy('name')->pluck('name','id');
+        $aluno = Aluno::find($id);
+        return view('aluno.editar', compact('aluno','turmas','responsaveis'));
 
     }
 
     public function alterar(AlunoRequest $request, $id)
     {
+        $aluno2 = new Aluno();
+        $a = $aluno2::find($id);
+        //ManipuladorArquivo::excluir($a->foto);
 
+        $aluno = Aluno::find($id);
+
+        $aluno->foto = ManipuladorArquivo::salvar($request->file('foto'), 'alunos', $request->get('matricula'));
+        $aluno->matricula = $request->get('matricula');
+        //dd($mta = $aluno->matricula);
+        $aluno->update($request->all());
+
+        return redirect('alunos');
     }
 
     public function excluir($id)
     {
-
+        Aluno::find($id)->delete();
+        return redirect('alunos');
     }
 }

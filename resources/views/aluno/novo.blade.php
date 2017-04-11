@@ -30,7 +30,7 @@
             <div class="form-group">
                 {!! Form::label ('turma_id', 'Turma: ',[ 'class'=>'control-label col-xs-2']) !!}
                 <div class="col-xs-5">
-                    {!! Form::select('turma_id', $turmas,null, ['id','class'=>'form-control', 'placeholder'=>'']) !!}
+                    {!! Form::select('turma_id', $turmas,null, ['class'=>'form-control', 'placeholder'=>'']) !!}
                 </div>
             </div>
             <div class="form-group">
