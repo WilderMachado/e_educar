@@ -16,6 +16,7 @@
     <file url="file://$PROJECT_DIR$/resources/views/aviso/editar.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/aviso/index.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/aviso/novo.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/chat/index.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/disciplina/editar.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/disciplina/index.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/disciplina/novo.blade.php" charset="UTF-8" />
