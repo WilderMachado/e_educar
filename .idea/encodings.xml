@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/config/app.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/config/constantes.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/public/js/chat.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/aluno/editar.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/aluno/index.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/aluno/novo.blade.php" charset="UTF-8" />

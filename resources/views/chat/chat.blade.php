@@ -27,7 +27,7 @@
                 <ul id="mensagens">
                     @foreach($chats as $chat)
                         <li id="{{'chat_'.$chat->id}}">
-                            {{$chat->remetente->name.' '.date('d/m/Y H:i:s', strtotime($chat->criacao))}}
+                            {{$chat->remetente->name.' '.date('d/m/Y H:i:s', strtotime($chat->data_hora))}}
                             <br/>
                             {{$chat->mensagem}}
                         </li>
@@ -37,4 +37,5 @@
 
         </div>
     </div>
+    {!! Html::script('js/chat.js') !!}
 @endsection

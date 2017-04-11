@@ -18,7 +18,7 @@ class CreateChatsTable extends Migration
             $table->string('mensagem');
             $table->increments('remetente_id');
             $table->increments('destinatario_id')->nullable();
-            $table->timestamp('criacao');
+            $table->timestamp('data_hora');
             $table->foreign('remetente_id')->references('id')->on('users');
             $table->foreign('destinatario_id')->references('id')->on('users');
         });

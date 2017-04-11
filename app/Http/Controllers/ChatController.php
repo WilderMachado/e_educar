@@ -28,13 +28,13 @@ class ChatController extends Controller
 
     public function chat($user_id = null)
     {
-        $chats = null;
-        if ($user_id):
-            //Incluir lógica para buscar conversas do usuário com id informado
+        //$chats = $user_id?Chat::lista($user_id):Chat::with('usuario')->orderBy('id', 'desc')->get();
+        $chats = Chat::lista($user_id ? $user_id : Auth::user()->id);
+        /*if ($user_id):
+            $chats = Chat::lista($user_id);//Incluir lógica para buscar conversas do usuário com id informado
         else:
             $chats = Chat::with('usuario')->orderBy('id', 'desc')->get();
-        endif;
-
+        endif;*/
         return view('chat.chat', compact('chats'));
     }
 
