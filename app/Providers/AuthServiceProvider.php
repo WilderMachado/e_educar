@@ -18,6 +18,7 @@ class AuthServiceProvider extends ServiceProvider
         'eeducar\Ano' => 'eeducar\Policies\AnoPolicy',
         'eeducar\Avaliacao' => 'eeducar\Policies\AvaliacaoPolicy',
         'eeducar\Aviso' => 'eeducar\Policies\AvisoPolicy',
+        'eeducar\Chat' => 'eeducar\Policies\ChatPolicy',
         'eeducar\Disciplina' => 'eeducar\Policies\DisciplinaPolicy',
         'eeducar\Documento' => 'eeducar\Policies\DocumentoPolicy',
         'eeducar\Pergunta' => 'eeducar\Policies\PerguntaPolicy',

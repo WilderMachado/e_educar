@@ -31,4 +31,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Aluno::class, 'responsavel_id');
     }
+
+    public function chatsEnviados()
+    {
+        return $this->hasMany(Chat::class, 'remetente_id');
+    }
+
+    public function chatsRecebidos()
+    {
+        return $this->hasMany(Chat::class, 'destinatario_id');
+    }
 }
