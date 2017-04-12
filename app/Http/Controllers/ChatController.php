@@ -6,6 +6,7 @@ use eeducar\Chat;
 use eeducar\Http\Requests\ChatRequest;
 use eeducar\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 
 class ChatController extends Controller
@@ -13,9 +14,9 @@ class ChatController extends Controller
     public function index()
     {
         if (Auth::user()->cant('visualizar', Chat::class)):
-            return redirect('chats.chat');
+            return redirect()->route('chats.chat');
         endif;
-        $users = User::has('chats')->paginate(config('constantes.paginacao'));
+        $users = User::comChat(Auth::user()->id)->paginate(config('constantes.paginacao'));
         return view('chat.index', compact('users'));
     }
 
@@ -26,20 +27,23 @@ class ChatController extends Controller
         $chat->save();
     }
 
-    public function chat($user_id = null)
+    public function chat()
     {
-        //$chats = $user_id?Chat::lista($user_id):Chat::with('usuario')->orderBy('id', 'desc')->get();
-        $chats = Chat::lista($user_id ? $user_id : Auth::user()->id);
-        /*if ($user_id):
-            $chats = Chat::lista($user_id);//Incluir lógica para buscar conversas do usuário com id informado
-        else:
-            $chats = Chat::with('usuario')->orderBy('id', 'desc')->get();
-        endif;*/
-        return view('chat.chat', compact('chats'));
+        $user_id = Input::get('user_id');
+        $chats = Chat::lista($user_id ? $user_id : Auth::user()->id)->reverse();
+        $destinatario_id = $user_id;
+        return view('chat.chat', compact('chats', 'destinatario_id'));
     }
 
-    public function excluir($id)
+    public function listar()
     {
+        $user_id = Input::get('user_id');
+        return response()->json(Chat::lista($user_id ? $user_id : Auth::user()->id));
+    }
 
+    public function excluir($user_id)
+    {
+        Chat::destroy(Chat::lista($user_id)->pluck('id')->toArray());
+        return redirect('chats');
     }
 }

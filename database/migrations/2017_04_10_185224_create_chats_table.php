@@ -16,8 +16,8 @@ class CreateChatsTable extends Migration
         Schema::create('chats', function (Blueprint $table) {
             $table->increments('id');
             $table->string('mensagem');
-            $table->increments('remetente_id');
-            $table->increments('destinatario_id')->nullable();
+            $table->unsignedInteger('remetente_id');
+            $table->unsignedInteger('destinatario_id')->nullable();
             $table->timestamp('data_hora');
             $table->foreign('remetente_id')->references('id')->on('users');
             $table->foreign('destinatario_id')->references('id')->on('users');

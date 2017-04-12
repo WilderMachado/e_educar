@@ -23,4 +23,9 @@ class ChatPolicy
     {
         return $user->role == 'admin';
     }
+
+    public function acao(User $user)
+    {
+        return $this->salvar($user) || $this->excluir($user);
+    }
 }

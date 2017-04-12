@@ -2,14 +2,14 @@
 @section('content')
     <div class="panel panel-default panel-table">
         <div class="card-panel  #388e3c green darken-2 center">
-            <span class=" grey-text text-lighten-5">Novo Aviso</span>
+            <span class=" grey-text text-lighten-5">Chat</span>
         </div>
         @include('errors.alert')
         <div class="form-horizontal">
             {!! Form::open(['route'=>'chats.salvar']) !!}
-            <div class="form-group">
-                {!! Form::hidden ('destinatario_id', $destinatario->id) !!}
-            </div>
+            @if($destinatario_id)
+                {!! Form::hidden ('destinatario_id', $destinatario_id, ['id'=>'destinatario_id']) !!}
+            @endif
             <div class="form-group">
                 {!! Form::label ('mensagem', 'Mensagem: ',['class'=>'control-label col-xs-2']) !!}
                 <div class="col-xs-5">
@@ -18,7 +18,7 @@
             </div>
             <div class="form-group">
                 <div class="col-xs-offset-2 col-xs-10">
-                    {!! Form::submit ('Enviar', ['id'=>'btn-enviar','class'=>'btn btn-primary light-blue darken-3']) !!}
+                    {!! Form::button ('Enviar', ['id'=>'btn-enviar','class'=>'btn btn-primary light-blue darken-3']) !!}
                 </div>
             </div>
             {!! Form::close() !!}
@@ -27,7 +27,7 @@
                 <ul id="mensagens">
                     @foreach($chats as $chat)
                         <li id="{{'chat_'.$chat->id}}">
-                            {{$chat->remetente->name.' '.date('d/m/Y H:i:s', strtotime($chat->data_hora))}}
+                            {{$chat->name.' '.date('d/m/Y H:i:s', strtotime($chat->data_hora))}}
                             <br/>
                             {{$chat->mensagem}}
                         </li>

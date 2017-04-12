@@ -26,7 +26,7 @@ class ChatRequest extends FormRequest
         return [
             'mensagem'=>'required|max:255',
             //'remetente_id'=>'required|exists:user,id',
-            'destinatario_id'=>'exists:user,id'
+            'destinatario_id'=>'nullable|exists:users,id'
         ];
     }
 }

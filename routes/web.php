@@ -55,10 +55,12 @@ Route::group(['prefix' => 'avisos', 'where' => ['id' => '[0-9]+']], function () 
     Route::get('{id}/excluir', ['as' => 'avisos.excluir', 'uses' => 'AvisoController@excluir'])->middleware('can:excluir,eeducar\Aviso');
 });
 
-Route::group(['prefix' => 'chat', 'where' => ['id' => '[0-9]+']], function () {
+Route::group(['prefix' => 'chats', 'where' => ['user_id' => '[0-9]+']], function () {
     Route::get('', ['as' => 'chats', 'uses' => 'ChatController@index'])->middleware('auth');
-    Route::get('chat', ['as' => 'chats.chat', 'uses' => 'ChatController@chat'])->middleware('can:salvar,App\Chat');
-    Route::post('salvar', ['as' => 'chats.salvar', 'uses' => 'ChatController@salvar'])->middleware('can:salvar,App\Chat');
+    Route::get('chat', ['as' => 'chats.chat', 'uses' => 'ChatController@chat'])->middleware('can:salvar,eeducar\Chat');
+    Route::post('salvar', ['as' => 'chats.salvar', 'uses' => 'ChatController@salvar'])->middleware('can:salvar,eeducar\Chat');
+    Route::get('listar', ['as' => 'chats.listar', 'uses' => 'ChatController@listar'])->middleware('can:salvar,eeducar\Chat');
+    Route::get('{user_id}/excluir', ['as' => 'chats.excluir', 'uses' => 'ChatController@excluir'])->middleware('can:excluir,eeducar\Chat');
 });
 
 Route::group(['prefix' => 'disciplinas', 'where' => ['id' => '[0-9]+']], function () {

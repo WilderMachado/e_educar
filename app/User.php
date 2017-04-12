@@ -41,4 +41,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Chat::class, 'destinatario_id');
     }
+
+    public function scopeComChat($query, $id){
+        return $query->has('chatsEnviados')->where('id','<>', $id);
+    }
 }

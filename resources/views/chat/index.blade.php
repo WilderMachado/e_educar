@@ -17,13 +17,13 @@
             <tr>
                 <td>{{$user->name}}</td>
                 <td>
-                    @can('alterar', eeducar\Chat::class)
+                    @can('salvar', eeducar\Chat::class)
                     <a title="Entrar"
-                       href="{{ route('chats.entrar', ['id'=>$user->id]) }}">
-                        <em class="glyphicon glyphicon-comment icon-conversation"></em>
+                       href="{{ route('chats.chat', ['user_id'=>$user->id]) }}">
+                        <em class="glyphicon glyphicon-comment"></em>
                     </a>
                     @endcan
-                    @can('excluir', eeducar\Disciplina::class)
+                    @can('excluir', eeducar\Chat::class)
                     <a class="btn-excluir" title="Excluir"
                        href="{{ route('chats.excluir', ['id'=>$user->id]) }}">
                         <em class="glyphicon glyphicon-trash"></em>
@@ -33,10 +33,7 @@
             </tr>
         @endforeach
         </tbody>
-        {!! $disciplinas->render() !!}
+        {!! $users->render() !!}
     </table>
-    @can('salvar', eeducar\Disciplina::class)
-    <a href="{{ route('disciplinas.novo')}}" class="btn btn-primary"> Nova disciplina</a>
-    @endcan
     {!! Html::script('js/index.js') !!}
 @endsection

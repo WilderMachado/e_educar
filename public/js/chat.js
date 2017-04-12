@@ -4,14 +4,16 @@
 window.onload = function () {
     mensagens = document.getElementById("mensagens");
     mensagem = document.getElementById("mensagem");
+    destinatario = document.getElementById("destinatario_id");
     var btnEnviar = document.getElementById("btn-enviar");
     btnEnviar.onclick = function () {
         enviar();
         return false;
     };
-    document.addEventListener("keypress", function (e) {
+    mensagem.addEventListener("keypress", function(e){
         if (e.which == 13) {
             enviar();
+            return false;
         }
     }, false);
     setInterval(buscar, 1000);
@@ -22,10 +24,13 @@ function enviar() {
     if (mensagem.value.trim() !== "") {
         formData.append("mensagem", mensagem.value);
         formData.append("_token", document.getElementsByName("_token").item(0).value);
-        formData.append("destinatario_id", document.getElementsByName("destinatario_id").item(0).value);
+        if(destinatario){
+            formData.append("destinatario_id", destinatario.value);
+        }
+
         var xhttp = criarXHTTP();
         xhttp.onreadystatechange = function () {
-            if (xhttp.onreadystatechange == 4 && xhttp.status == 200) {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
                 mensagem.value = "";
             }
         };
@@ -34,13 +39,18 @@ function enviar() {
     } else {
         alert("É preciso preencher mensagem a ser enviada!")
     }
-    mensagem.onfocus();
+    mensagem.focus();
 }
 function buscar() {
+    var caminho = "listar";
+    if(destinatario){
+        caminho = caminho.concat("?user_id=",destinatario.value);
+    }
     var xhttp = criarXHTTP();
     xhttp.onreadystatechange = function () {
-        if (xhttp.onreadystatechange == 4 && xhttp.status == 200) {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
             var json = JSON.parse(xhttp.responseText);
+
             for (var i = 0; i < json.length; i++) {
                 if (!document.getElementById("chat_" + json[i].id)) {
                     var liMensagem = document.createElement("li");
@@ -54,7 +64,7 @@ function buscar() {
             }
         }
     };
-    xhttp.open("GET", "listar", true);
+    xhttp.open("GET",caminho , true);
     xhttp.send();
 }
 function criarXHTTP() {
@@ -72,6 +82,6 @@ function criarXHTTP() {
 }
 function formatarData(data) {
     var dataHora = data.split(" ");
-    var arrayData = dataHora.split("-");
+    var arrayData = dataHora[0].split("-");
     return arrayData[2].concat("/", arrayData[1]).concat("/", arrayData[0]).concat(" ", dataHora[1]);
 }
