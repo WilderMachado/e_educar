@@ -2,8 +2,10 @@
 
 namespace eeducar\Http\Controllers;
 
+use eeducar\Ano;
 use eeducar\Avaliacao;
 use eeducar\Http\Requests\AvaliacaoRequest;
+use eeducar\Pergunta;
 use Illuminate\Support\Facades\Auth;
 
 class AvaliacaoController extends Controller
@@ -22,7 +24,9 @@ class AvaliacaoController extends Controller
 
     public function novo()
     {
-        return view('avaliacao.novo');
+        $anos = Ano::pluck('codigo','id');
+        $perguntas = Pergunta::pluck('enunciado','id');
+        return view('avaliacao.novo',compact('anos','perguntas'));
     }
 
     public function salvar()

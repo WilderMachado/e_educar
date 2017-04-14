@@ -24,7 +24,10 @@ class PerguntaRequest extends FormRequest
     public function rules()
     {
         return [
-            'enunciado' => 'required'
+            'enunciado' => 'required',
+            'pergunta_fechada'=>'boolean',
+            'opcoes_resposta'=>'required_with:pergunta_fechada|array|min:2',
+            'opcoes_resposta.*'=>'string'
         ];
     }
 }

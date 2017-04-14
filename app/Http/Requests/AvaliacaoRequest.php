@@ -24,6 +24,7 @@ class AvaliacaoRequest extends FormRequest
     public function rules()
     {
         return [
+            'ano_id'=>'required',
             'inicio' => 'required|date',
             'termino' => 'required|date|after:inicio'
         ];

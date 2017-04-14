@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class OpcaoResposta extends Model
 {
-use SoftDeletes
+use SoftDeletes;
 
     protected $softDelete = true;
-    protected $fillable = ['resposta_opcao'];
+    protected $fillable = ['resposta_opcao','pergunta_id'];
     protected $hidden = ['deleted_at'];
 
     /**
