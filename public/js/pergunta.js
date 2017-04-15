@@ -6,7 +6,6 @@ window.onload = function () {
     for (var i = 0; i < listaRemover.length; i++) {
         listaRemover.item(i).addEventListener("click", function () {
             remover(this);
-            return false;
         });
     }
     var cbxFechada = document.getElementById("cbx-fechada");
@@ -30,6 +29,7 @@ function adicionar() {
     var divCol = criarElemento("div", "col-xs-offset-2 col-xs-5");
     var texto = criarElemento("input", "form-control");
     texto.setAttribute("name", "opcoes_resposta[]");
+    texto.setAttribute("maxlength", "255");
     var btnRemover = criarElemento("button", "btn-remover btn btn-primary");
     btnRemover.appendChild(document.createTextNode("Remover"));
     btnRemover.addEventListener("click", function () {

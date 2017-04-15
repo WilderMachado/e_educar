@@ -26,7 +26,7 @@ class PerguntaController extends Controller
     {
         $pergunta = Pergunta::create($request->all());
         if ($pergunta->pergunta_fechada):
-            $this->inserirOpcoes($pergunta,$request->opcoes_resposta);
+            $this->inserirOpcoes($pergunta, $request->opcoes_resposta);
         endif;
         return redirect('perguntas');
     }
@@ -61,38 +61,37 @@ class PerguntaController extends Controller
 
     public function excluir($id)
     {
-        $pergunta = Pergunta::find($id);
-        $this->removerOpcoes($pergunta);
-        $pergunta->delete();
+        Pergunta::find($id)->delete();
         return redirect('perguntas');
     }
 
     private function removerOpcoes(Pergunta $pergunta)
     {
-        OpcaoResposta::destroy($pergunta->opcoesResposta->pluck('id')->toArray());
+        dd($pergunta->opcoesResposta);
+        OpcaoResposta::destroy($pergunta->opcoesResposta);
     }
 
-    private function inserirOpcoes(Pergunta $pergunta, Array $opcoes)
+    private function inserirOpcoes(Pergunta $pergunta, $opcoes)
     {
         foreach ($opcoes as $opcao):
             $pergunta->opcoesResposta()->create(['resposta_opcao' => $opcao]);
         endforeach;
     }
 
-    private function atualizarOpcoes(Pergunta $pergunta, Array $opcoes)
+    private function atualizarOpcoes(Pergunta $pergunta, $opcoes)
     {
         foreach ($pergunta->opcoesResposta as $i => $opcao):
             $opcao->update(['resposta_opcao' => $opcoes[$i]]);
         endforeach;
     }
 
-    private function aumentarOpcoes(Pergunta $pergunta, Array $opcoes)
+    private function aumentarOpcoes(Pergunta $pergunta, $opcoes)
     {
         $this->atualizarOpcoes($pergunta, array_slice($opcoes, 0, $pergunta->opcoesResposta->count()));
         $this->inserirOpcoes($pergunta, array_slice($opcoes, $pergunta->opcoesResposta->count()));
     }
 
-    private function diminuirOpcoes(Pergunta $pergunta, Array $opcoes)
+    private function diminuirOpcoes(Pergunta $pergunta, $opcoes)
     {
         foreach ($opcoes as $i => $opcao):
             $pergunta->opcoesResposta->get($i)->update(['resposta_opcao' => $opcao]);

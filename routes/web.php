@@ -82,12 +82,12 @@ Route::group(['prefix' => 'documentos', 'where' => ['id' => '[0-9]+']], function
 });
 
 Route::group(['prefix' => 'perguntas', 'where' => ['id' => '[0-9]+']], function () {
-    Route::get('', ['as' => 'perguntas', 'uses' => 'PerguntaController@index']);
-    Route::get('novo', ['as' => 'perguntas.novo', 'uses' => 'PerguntaController@novo']);
-    Route::post('salvar', ['as' => 'perguntas.salvar', 'uses' => 'PerguntaController@salvar']);
-    Route::get('{id}/editar', ['as' => 'perguntas.editar', 'uses' => 'PerguntaController@editar']);
-    Route::put('{id}/alterar', ['as' => 'perguntas.alterar', 'uses' => 'PerguntaController@alterar']);
-    Route::get('{id}/excluir', ['as' => 'perguntas.excluir', 'uses' => 'PerguntaController@excluir']);
+    Route::get('', ['as' => 'perguntas', 'uses' => 'PerguntaController@index'])->middleware('can:visualizar,eeducar\Pergunta');
+    Route::get('novo', ['as' => 'perguntas.novo', 'uses' => 'PerguntaController@novo'])->middleware('can:salvar,eeducar\Pergunta');
+    Route::post('salvar', ['as' => 'perguntas.salvar', 'uses' => 'PerguntaController@salvar'])->middleware('can:salvar,eeducar\Pergunta');
+    Route::get('{id}/editar', ['as' => 'perguntas.editar', 'uses' => 'PerguntaController@editar'])->middleware('can:alterar,eeducar\Pergunta');
+    Route::put('{id}/alterar', ['as' => 'perguntas.alterar', 'uses' => 'PerguntaController@alterar'])->middleware('can:alterar,eeducar\Pergunta');
+    Route::get('{id}/excluir', ['as' => 'perguntas.excluir', 'uses' => 'PerguntaController@excluir'])->middleware('can:excluir,eeducar\Pergunta');
 });
 
 Route::group(['prefix' => 'professores', 'where' => ['id' => '[0-9]+']], function () {

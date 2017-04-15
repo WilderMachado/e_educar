@@ -2,7 +2,7 @@
 @section('content')
     <div class="panel panel-default panel-table">
         <div class="card-panel  #388e3c green darken-2 center">
-            <span class=" grey-text text-lighten-5">Novo Ano</span>
+            <span class=" grey-text text-lighten-5">Nova Avaliação</span>
         </div>
         @include('errors.alert')
         <div class="form-horizontal">
@@ -10,7 +10,7 @@
             <div class="form-group">
                 {!! Form::label ('ano_id', 'Ano: ',[ 'class'=>'control-label col-xs-2']) !!}
                 <div class="col-xs-5">
-                    {!! Form::select ('ano_id', $anos, null, ['class'=>'form-control']) !!}
+                    {!! Form::select ('ano_id', $anos, null, ['class'=>'form-control','placeholder'=>'']) !!}
                 </div>
             </div>
             <div class="form-group">
@@ -25,18 +25,16 @@
                     {!! Form::date ('termino', null, ['class'=>'form-control']) !!}
                 </div>
             </div>
-            <div class="form-group">
                 <fieldset>
+                    <ul>
                     <legend>Perguntas</legend>
                     @foreach($perguntas as $pergunta)
-                {!! Form::label ($pergunta->id, $pergunta->enunciado,[ 'class'=>'control-label col-xs-2']) !!}
-                <div class="col-xs-5">
-                    {!! Form::checkbox ('perguntas[]',$pergunta->id, ['class'=>'form-control']) !!}
-                </div>
-                        @endforeach
+                        {!! Form::checkbox ('perguntas[]',$pergunta->id, null, ['id'=>$pergunta->id]) !!}
+                        {!! Form::label ($pergunta->id, $pergunta->enunciado) !!}
+                        <br/>
+                    @endforeach
+                    </ul>
                 </fieldset>
-            </div>
-
             <div class="form-group">
                 <div class="col-xs-offset-2 col-xs-10">
                     {!! Form::submit ('Salvar', ['class'=>'btn btn-primary light-blue darken-3']) !!}

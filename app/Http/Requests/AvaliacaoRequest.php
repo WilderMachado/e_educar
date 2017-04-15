@@ -26,7 +26,8 @@ class AvaliacaoRequest extends FormRequest
         return [
             'ano_id'=>'required',
             'inicio' => 'required|date',
-            'termino' => 'required|date|after:inicio'
+            'termino' => 'required|date|after:inicio',
+            'perguntas'=>'required|array|min:2'
         ];
     }
 }

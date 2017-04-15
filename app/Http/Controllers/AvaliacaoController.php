@@ -24,28 +24,37 @@ class AvaliacaoController extends Controller
 
     public function novo()
     {
-        $anos = Ano::pluck('codigo','id');
-        $perguntas = Pergunta::pluck('enunciado','id');
-        return view('avaliacao.novo',compact('anos','perguntas'));
+        $anos = Ano::pluck('codigo', 'id');
+        $perguntas = Pergunta::all('enunciado','id');
+        return view('avaliacao.novo', compact('anos', 'perguntas'));
     }
 
-    public function salvar()
+    public function salvar(AvaliacaoRequest $request)
     {
-
+        $avaliacao = Avaliacao::create($request->all());
+        $avaliacao->perguntas()->attach($request->perguntas);
+        return redirect('avaliacoes');
     }
 
     public function editar($id)
     {
-
+        $avaliacao = Avaliacao::find($id);
+        $anos = Ano::pluck('codigo', 'id');
+        $perguntas = Pergunta::all('enunciado','id');
+        return view('avaliacao.editar', compact('avaliacao','anos', 'perguntas'));
     }
 
     public function alterar(AvaliacaoRequest $request, $id)
     {
-
+        $avaliacao = Avaliacao::find($id);
+        $avaliacao->perguntas()->sync($request->perguntas);
+        $avaliacao->update($request->all());
+        return redirect('avaliacoes');
     }
 
     public function excluir($id)
     {
-
+        Avaliacao::find($id)->delete();
+        return redirect('avaliacoes');
     }
 }
