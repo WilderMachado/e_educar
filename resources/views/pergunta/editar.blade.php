@@ -22,7 +22,7 @@
                     @foreach($pergunta->opcoesResposta as $opcao)
                         <div class="form-group">
                             <div class="col-xs-offset-2 col-xs-5">
-                                {!! Form::text ('opcoes_resposta[]', $opcao->resposta_opcao, ['class'=>'form-control','maxlength'=>'255']) !!}
+                                <input type="text" name="opcoes_resposta[]" class="form-control" maxlength="255" value="{{$opcao->resposta_opcao}}"/>
                                 {!! Form::button('Remover', ['class'=>'btn-remover btn btn-primary']) !!}
                             </div>
                         </div>

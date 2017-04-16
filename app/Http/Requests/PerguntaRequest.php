@@ -27,7 +27,7 @@ class PerguntaRequest extends FormRequest
             'enunciado' => 'required',
             'pergunta_fechada' => 'boolean',
             'opcoes_resposta' => 'required_with:pergunta_fechada|array|min:2',
-            'opcoes_resposta.*' => 'string'
+            'opcoes_resposta.*' => 'string|distinct'
         ];
     }
 }
