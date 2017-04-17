@@ -15,12 +15,11 @@ class QuestionarioController extends Controller
             abort(403);
         endif;
         $avaliacao = $avaliacao = Avaliacao::aberta()->first();
-        if (!is_null($avaliacao)):
+        if (is_null($avaliacao)):
             $this->mensagem('Não há avaliação disponível no momento.', back()->getTargetUrl());
             return;
         endif;
         $responsavel_id = $user->id;
-
         return view('questionario.novo', compact('avaliacao', 'responsavel_id'));
     }
 
