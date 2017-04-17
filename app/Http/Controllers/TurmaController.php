@@ -27,7 +27,7 @@ class TurmaController extends Controller
         $anos = Ano::pluck('codigo', 'id');
         $disciplinas = Disciplina::orderBy('nome')->pluck('nome', 'id');
         $professores = Professor::orderBy('nome')->pluck('nome', 'id');
-        return view('turma.novo', compact('niveis','turnos', 'anos', 'disciplinas', 'professores'));
+        return view('turma.novo', compact('niveis', 'turnos', 'anos', 'disciplinas', 'professores'));
     }
 
     public function salvar(TurmaRequest $request)
@@ -38,9 +38,9 @@ class TurmaController extends Controller
         $disciplinas = $request->disciplinas;
         $professores = $request->professores;
         $disciplinaProfessor = array();
-        for ($i = 0; $i < count($disciplinas); $i++) {
-            $disciplinaProfessor[$disciplinas[$i]]=['professor_id'=>$professores[$i]];
-        }
+        for ($i = 0; $i < count($disciplinas); $i++):
+            $disciplinaProfessor[$disciplinas[$i]] = ['professor_id' => $professores[$i]];
+        endfor;
         $turma->disciplinas()->attach($disciplinaProfessor);
         return redirect('turmas');
     }
@@ -53,8 +53,8 @@ class TurmaController extends Controller
         $disciplinas = Disciplina::orderBy('nome')->pluck('nome', 'id');
         $professores = Professor::orderBy('nome')->pluck('nome', 'id');
         $turma = Turma::with('ano', 'disciplinas', 'professores')->find($id);
-        $disciplinasProfessores=$turma->disciplinaProfessor()->get();
-        return view('turma.editar', compact('niveis','turma', 'turnos', 'anos', 'disciplinas', 'professores', 'disciplinasProfessores'));
+        $disciplinasProfessores = $turma->disciplinaProfessor()->get();
+        return view('turma.editar', compact('niveis', 'turma', 'turnos', 'anos', 'disciplinas', 'professores', 'disciplinasProfessores'));
     }
 
     public function alterar(TurmaRequest $request, $id)
@@ -65,9 +65,9 @@ class TurmaController extends Controller
         $disciplinas = $request->disciplinas;
         $professores = $request->professores;
         $disciplinaProfessor = array();
-        for ($i = 0; $i < count($disciplinas); $i++) {
-            $disciplinaProfessor[$disciplinas[$i]]=['professor_id'=>$professores[$i]];
-        }
+        for ($i = 0; $i < count($disciplinas); $i++):
+            $disciplinaProfessor[$disciplinas[$i]] = ['professor_id' => $professores[$i]];
+        endfor;
         $turma->disciplinas()->sync($disciplinaProfessor);
         $turma->update($request->all());
         return redirect('turmas');

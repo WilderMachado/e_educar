@@ -21,6 +21,7 @@ class Avaliacao extends Model
     {
         return $this->belongsTo(Ano::class);
     }
+
     /**
      * Busca perguntas da avaliação
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
@@ -29,6 +30,7 @@ class Avaliacao extends Model
     {
         return $this->belongsToMany(Pergunta::class);
     }
+
     /**
      * Busca respostas da avaliação
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -37,6 +39,7 @@ class Avaliacao extends Model
     {
         return $this->hasMany(Resposta::class);
     }
+
     /**
      * Busca disciplinas da avaliadas
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
@@ -44,5 +47,12 @@ class Avaliacao extends Model
     public function disciplinas()
     {
         return $this->belongsToMany(Disciplina::class);
+    }
+
+    public function scopeAberta($query)
+    {
+        return $query->whereDate('inicio', '<=', date('Y-m-d'))
+            ->whereDate('termino', '>=', date('Y-m-d'))
+            ->with('perguntas.opcoesResposta');
     }
 }

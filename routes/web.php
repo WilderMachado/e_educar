@@ -100,8 +100,8 @@ Route::group(['prefix' => 'professores', 'where' => ['id' => '[0-9]+']], functio
 });
 
 Route::group(['prefix' => 'questionarios'], function () {
-    Route::get('', ['as' => 'questionarios', 'uses' => 'QuestionariosController@novo']);
-    Route::post('salvar', ['as' => 'questionarios.salvar', 'uses' => 'QuestionariosController@salvar']);
+    Route::get('', ['as' => 'questionarios', 'uses' => 'QuestionarioController@novo']);
+    Route::post('salvar', ['as' => 'questionarios.salvar', 'uses' => 'QuestionarioController@salvar']);
 });
 
 Route::group(['prefix' => 'respostas', 'where' => ['id' => '[0-9]+']], function () {
