@@ -67,7 +67,6 @@ class PerguntaController extends Controller
 
     private function removerOpcoes(Pergunta $pergunta)
     {
-        dd($pergunta->opcoesResposta);
         OpcaoResposta::destroy($pergunta->opcoesResposta);
     }
 

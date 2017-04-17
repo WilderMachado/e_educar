@@ -8,7 +8,7 @@
         <div class="form-horizontal">
             {!! Form::open(['route'=>['perguntas.alterar',$pergunta->id],'method'=>'put']) !!}
             <div class="form-group">
-                {!! Form::label ('enunciado', 'Enunciado: ',[ 'class'=>'control-label col-xs-2']) !!}
+                {!! Form::label ('enunciado', 'Enunciado: ',['class'=>'control-label col-xs-2']) !!}
                 <div class="col-xs-5">
                     {!! Form::textarea ('enunciado', $pergunta->enunciado, ['class'=>'form-control','maxlength'=>'255']) !!}
                 </div>

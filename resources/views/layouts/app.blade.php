@@ -63,6 +63,9 @@
                         @can('visualizar',eeducar\Aluno::class)
                         <li><a href="{{route('alunos')}}">Alunos</a></li>
                         @endcan
+                        @can('visualizar',eeducar\Avaliacao::class)
+                        <li><a href="{{route('avaliacoes')}}">Avaliações</a></li>
+                        @endcan
                         @can('visualizar',eeducar\Documento::class)
                         <li><a href="{{route('documentos')}}">Documentos</a></li>
                         @endcan

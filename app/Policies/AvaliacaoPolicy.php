@@ -11,7 +11,7 @@ class AvaliacaoPolicy
 
     public function visualizar(User $user)
     {
-        return $user->role == 'admin';
+        return $user->role == 'admin' || $user->role == 'responsavel';
     }
 
     public function salvar(User $user)
@@ -28,7 +28,6 @@ class AvaliacaoPolicy
     {
         return $user->role == 'admin';
     }
-
 
     public function acao(User $user)
     {

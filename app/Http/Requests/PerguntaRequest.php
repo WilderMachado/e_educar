@@ -30,4 +30,19 @@ class PerguntaRequest extends FormRequest
             'opcoes_resposta.*' => 'string|distinct'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'distinct' => 'campo :attribute possui valores repetidos.'
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'opcoes_resposta.*' => 'opções de resposta',
+            'opcoes_resposta' => 'opções de resposta'
+        ];
+    }
 }
