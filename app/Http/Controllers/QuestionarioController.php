@@ -3,7 +3,7 @@
 namespace eeducar\Http\Controllers;
 
 use eeducar\Avaliacao;
-use Illuminate\Http\Request;
+use eeducar\Http\Requests\QuestionarioRequest;
 use Illuminate\Support\Facades\Auth;
 
 class QuestionarioController extends Controller
@@ -21,6 +21,22 @@ class QuestionarioController extends Controller
         endif;
         $responsavel_id = $user->id;
         return view('questionario.novo', compact('avaliacao', 'responsavel_id'));
+    }
+
+    public function salvar(QuestionarioRequest $request)
+    {
+        $avaliacao = Avaliacao::find($request->avaliacao_id);
+        $perguntas = $request->pergunta_id;
+        $respostas = $request->campo_resposta;
+        $responsavel = $request->responsavel_id;
+        foreach ($respostas as $i => $resposta):
+            $avaliacao->respostas()->create([
+                'campo_resposta' => $resposta,
+                'pergunta_id'=>$perguntas[$i],
+            ]);
+        endforeach;
+        $avaliacao->responsaveis()->attach($responsavel);
+        return redirect('home');
     }
 
     private function mensagem($texto, $rota)

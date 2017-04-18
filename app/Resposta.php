@@ -6,16 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Resposta extends Model
 {
-    protected $fillable = ['campo_resposta'];
-
-    /**
-     * Busca a disciplina que se relaciona à resposta
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function disciplina()
-    {
-        return $this->belongsTo(Disciplina::class);
-    }
+    protected $fillable = ['campo_resposta','pergunta_id', 'avaliacao_id'];
 
     /**
      * Busca pergunta

@@ -18,11 +18,9 @@ class CreateRespostasTable extends Migration
             $table->string('campo_resposta');
             $table->unsignedInteger('pergunta_id');
             $table->unsignedInteger('avaliacao_id');
-            $table->unsignedInteger('disciplina_id');
             $table->timestamps();
             $table->foreign('pergunta_id')->references('id')->on('perguntas');
             $table->foreign('avaliacao_id')->references('id')->on('avaliacaos');
-            $table->foreign('disciplina_id')->references('id')->on('disciplinas');
         });
     }
 

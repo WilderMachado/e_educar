@@ -40,13 +40,9 @@ class Avaliacao extends Model
         return $this->hasMany(Resposta::class);
     }
 
-    /**
-     * Busca disciplinas da avaliadas
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function disciplinas()
+    public function responsaveis()
     {
-        return $this->belongsToMany(Disciplina::class);
+        return $this->belongsToMany(User::class, 'avaliacao_responsavel','avaliacao_id' ,'responsavel_id');
     }
 
     public function scopeAberta($query)

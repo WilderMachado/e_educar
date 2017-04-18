@@ -11,23 +11,24 @@
             {!! Form::hidden ('responsavel_id', $responsavel_id) !!}
             <div class="form-group col-xs-offset-1">
                 <ol>
-                @foreach($avaliacao->perguntas as $pergunta)
-                    <li>
-                    {!! Form::label ('enunciado', $pergunta->enunciado) !!}
-                    {!! Form::hidden ('pergunta_id[]', $pergunta->id) !!}
-                    @if($pergunta->pergunta_fechada)
-                        @foreach($pergunta->opcoesResposta as $opcao)
-                            <br/>
-                            {!! Form::radio("campo_resposta[]", $opcao->resposta_opcao, null,['id'=>$opcao->id]) !!}
-                            {!! Form::label($opcao->id, $opcao->resposta_opcao) !!}
-                        @endforeach
-                    @else
-                        {!! Form::text("campo_resposta[]", null, ['class'=>'form-control']) !!}
-                    @endif
-                    </li>
-                @endforeach
+                    @foreach($avaliacao->perguntas as $pergunta)
+                        <li>
+                            {!! Form::label ('enunciado', $pergunta->enunciado) !!}
+                            <input name="pergunta_id[]" type="hidden" value="{{$pergunta->id}}">
+                            @if($pergunta->pergunta_fechada)
+                                @foreach($pergunta->opcoesResposta as $opcao)
+                                    <br/>
+                                    <input type="radio" name="campo_resposta[]" id="{{$opcao->id}}"
+                                           value="{{$opcao->resposta_opcao}}"/>
+                                    <label for="{{$opcao->id}}">{{$opcao->resposta_opcao}}</label>
+                                @endforeach
+                            @else
+                                <input type="text" name="campo_resposta[]" class="form-control" maxlength="255"/>
+                            @endif
+                        </li>
+                    @endforeach
                 </ol>
-                    {!! Form::submit ('Salvar', ['class'=>'btn btn-primary']) !!}
+                {!! Form::submit ('Salvar', ['class'=>'btn btn-primary']) !!}
             </div>
             {!! Form::close() !!}
         </div>

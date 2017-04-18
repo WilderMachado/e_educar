@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAvaliacaoDisciplinaTable extends Migration
+class CreateAvaliacaoResponsavelTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateAvaliacaoDisciplinaTable extends Migration
      */
     public function up()
     {
-        Schema::create('avaliacao_disciplina', function (Blueprint $table) {
+        Schema::create('avaliacao_responsavel', function (Blueprint $table) {
             $table->unsignedInteger('avaliacao_id');
-            $table->unsignedInteger('disciplina_id');
+            $table->unsignedInteger('responsavel_id');
             $table->foreign('avaliacao_id')->references('id')->on('avaliacaos');
-            $table->foreign('disciplina_id')->references('id')->on('disciplinas');
+            $table->foreign('responsavel_id')->references('id')->on('users');
         });
     }
 
@@ -28,6 +28,6 @@ class CreateAvaliacaoDisciplinaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('avaliacao_disciplina');
+        Schema::dropIfExists('avaliacao_responsavel');
     }
 }

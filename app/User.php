@@ -45,4 +45,9 @@ class User extends Authenticatable
     public function scopeComChat($query, $id){
         return $query->has('chatsEnviados')->where('id','<>', $id);
     }
+
+    public function avaliacoes()
+    {
+        return $this->belongsToMany(Avaliacao::class, 'avaliacao_responsavel', 'responsavel_id', 'avaliacao_id');
+    }
 }

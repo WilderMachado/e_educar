@@ -17,26 +17,10 @@ class Disciplina extends Model
     {
         return $this->belongsToMany(Professor::class, 'disciplina_professor_turma');
     }
+
     public function turmas()
     {
         return $this->belongsToMany(Turma::class, 'disciplina_professor_turma');
     }
 
-    /**
-     * Busca avaliações relacionadas a disciplina
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function avaliacoes()
-    {
-        return $this->belongsToMany(Avaliacao::class);
-    }
-
-    /**
-     * Busca respostas em avaliações relacionadas a essa disciplina
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function respostas()
-    {
-        return $this->hasMany(Resposta::class);
-    }
 }
