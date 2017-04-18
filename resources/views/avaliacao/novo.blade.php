@@ -33,6 +33,7 @@
                         {!! Form::label ($pergunta->id, $pergunta->enunciado) !!}
                         <br/>
                     @endforeach
+                        <a href="{{ route('perguntas.novo')}}" class="btn btn-primary"> Nova Pergunta</a>
                     </ul>
                 </fieldset>
             <div class="form-group">

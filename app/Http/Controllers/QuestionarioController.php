@@ -19,6 +19,10 @@ class QuestionarioController extends Controller
             $this->mensagem('Não há avaliação disponível no momento.', back()->getTargetUrl());
             return;
         endif;
+        if($user->avaliacoes->contains($avaliacao)):
+            $this->mensagem('Avaliação já foi realizada.', back()->getTargetUrl());
+            return;
+        endif;
         $responsavel_id = $user->id;
         return view('questionario.novo', compact('avaliacao', 'responsavel_id'));
     }

@@ -69,6 +69,9 @@
                         @can('visualizar',eeducar\Documento::class)
                         <li><a href="{{route('documentos')}}">Documentos</a></li>
                         @endcan
+                        @can('salvar',eeducar\Chat::class)
+                        <li><a href="{{route('chats')}}">Chat</a></li>
+                        @endcan
                     </ul>
                 </div>
                 <!-- </ul> -->
