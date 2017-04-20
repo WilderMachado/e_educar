@@ -2,7 +2,7 @@
 @section('content')
 
         <div class="card-panel  #388e3c green darken-2 center">
-            <span class=" grey-text text-lighten-5">Avaliacoes</span>
+            <span class=" grey-text text-lighten-5">Avaliações</span>
         </div>
         <table class="table">
             <thead>

@@ -25,7 +25,7 @@ class AvaliacaoController extends Controller
     public function novo()
     {
         $anos = Ano::pluck('codigo', 'id');
-        $perguntas = Pergunta::all('enunciado','id');
+        $perguntas = Pergunta::all('enunciado', 'id');
         return view('avaliacao.novo', compact('anos', 'perguntas'));
     }
 
@@ -40,8 +40,8 @@ class AvaliacaoController extends Controller
     {
         $avaliacao = Avaliacao::find($id);
         $anos = Ano::pluck('codigo', 'id');
-        $perguntas = Pergunta::all('enunciado','id');
-        return view('avaliacao.editar', compact('avaliacao','anos', 'perguntas'));
+        $perguntas = Pergunta::all('enunciado', 'id');
+        return view('avaliacao.editar', compact('avaliacao', 'anos', 'perguntas'));
     }
 
     public function alterar(AvaliacaoRequest $request, $id)
@@ -56,5 +56,15 @@ class AvaliacaoController extends Controller
     {
         Avaliacao::find($id)->delete();
         return redirect('avaliacoes');
+    }
+
+    public function relatorio($id)
+    {
+        $avaliacao = Avaliacao::with('perguntas.respostas')->find($id);
+        $mpdf = new \mPDF();
+        $mpdf->WriteHTML(file_get_contents('css/app.css'), 1);
+        //$mpdf->WriteHTML(file_get_contents('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'), 1);
+        $mpdf->WriteHTML(view('avaliacao.relatorio',['avaliacao' => $avaliacao]));
+        $mpdf->Output();
     }
 }

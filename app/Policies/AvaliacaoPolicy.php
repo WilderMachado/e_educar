@@ -33,4 +33,9 @@ class AvaliacaoPolicy
     {
         return $this->alterar($user) || $this->excluir($user);
     }
+
+    public function relatorio(User $user)
+    {
+        return $user->role == 'admin';
+    }
 }
