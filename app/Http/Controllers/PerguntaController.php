@@ -72,9 +72,11 @@ class PerguntaController extends Controller
 
     private function inserirOpcoes(Pergunta $pergunta, $opcoes)
     {
+        $opcoesArray = Array();
         foreach ($opcoes as $opcao):
-            $pergunta->opcoesResposta()->create(['resposta_opcao' => $opcao]);
+            $opcoesArray[]['resposta_opcao'] = $opcao;
         endforeach;
+        $pergunta->opcoesResposta()->createMany($opcoesArray);
     }
 
     private function atualizarOpcoes(Pergunta $pergunta, $opcoes)
