@@ -4,6 +4,7 @@ namespace eeducar\Http\Controllers;
 
 use eeducar\Ano;
 use eeducar\Http\Requests\AnoRequest;
+use eeducar\Unidade;
 
 class AnoController extends Controller
 {
@@ -26,7 +27,8 @@ class AnoController extends Controller
     {
         $this->validate($request,
             ['codigo' => 'unique:anos,codigo']);
-        Ano::create($request->all());
+        $ano = Ano::create($request->all());
+        $ano->unidades()->createMany($request->unidades);
         return redirect('anos');
     }
 
@@ -40,7 +42,16 @@ class AnoController extends Controller
     {
         $this->validate($request,
             ['codigo' => 'unique:anos,codigo,' . $id]);
-        Ano::find($id)->update($request->all());
+        $ano = Ano::with('unidades')->find($id);
+        $unidades = array_values($request->unidades);
+        if (count($unidades) == $ano->unidades->count()):
+            $this->atualizarUnidades($ano, $unidades);
+        elseif (count($unidades) > $ano->unidades->count()):
+            $this->aumentarUnidades($ano, $unidades);
+        else:
+            $this->diminuirUnidades($ano, $unidades);
+        endif;
+        $ano->update($request->all());
         return redirect('anos');
     }
 
@@ -49,4 +60,25 @@ class AnoController extends Controller
         Ano::find($id)->delete();
         return redirect('anos');
     }*/
+
+    private function atualizarUnidades(Ano $ano, $unidades)
+    {
+        foreach ($ano->unidades as $i => $unidade):
+            $unidade->update($unidades[$i]);
+        endforeach;
+    }
+
+    private function aumentarUnidades(Ano $ano, $unidades)
+    {
+        $this->atualizarUnidades($ano, array_slice($unidades, 0, $ano->unidades->count()));
+        $ano->unidades()->createMany(array_slice($unidades, $ano->unidades->count()));
+    }
+
+    private function diminuirUnidades(Ano $ano, $unidades)
+    {
+        foreach ($unidades as $i => $unidade):
+            $ano->unidades->get($i)->update($unidade);
+        endforeach;
+        Unidade::destroy(array_slice($ano->unidades->toArray(), count($unidades)));
+    }
 }

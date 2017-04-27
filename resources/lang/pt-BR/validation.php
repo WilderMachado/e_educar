@@ -16,11 +16,13 @@ return [
     "accepted" => "O campo :attribute deve ser aceito.",
     "active_url" => "O campo :attribute não contém um URL válido.",
     "after" => "O campo :attribute deverá conter uma data posterior a :date.",
+    'after_or_equal' => 'O campo :attribute deve ser uma data posterior ou igual a :date.',
     "alpha" => "O campo :attribute deverá conter apenas letras.",
     "alpha_dash" => "O campo :attribute deverá conter apenas letras, números e traços.",
     "alpha_num" => "O campo :attribute deverá conter apenas letras e números .",
     "array" => "O campo :attribute precisa ser um conjunto.",
     "before" => "O campo :attribute deverá conter uma data anterior a :date.",
+    'before_or_equal' => 'O campo :attribute dever ser uma data anterior ou igual a :date.',
     "between" => [
         "numeric" => "O campo :attribute deverá ter um valor entre :min - :max.",
         "file" => "O campo :attribute deverá ter um tamanho entre :min - :max kilobytes.",
@@ -34,6 +36,7 @@ return [
     "different" => "Os campos :attribute e :other deverão conter valores diferentes.",
     "digits" => "O campo :attribute deverá conter :digits dígitos.",
     "digits_between" => "O campo :attribute deverá conter entre :min a :max dígitos.",
+    'distinct' => 'O campo :attribute possui valores repetidos.',
     "email" => "O campo :attribute não contém um endereço de email válido.",
     "exists" => "O valor selecionado para o campo :attribute é inválido.",
     "filled" => "O campo :attribute é obrigatório.",
@@ -104,11 +107,11 @@ return [
     */
 
     'attributes' => [
-        'name'=>'Nome',
-        'email'=>'E-mail',
-        'password'=>'Senha',
-        'role'=>'Papel',
-        'user'=>'Usuário',
+        'name' => 'Nome',
+        'email' => 'E-mail',
+        'password' => 'Senha',
+        'role' => 'Papel',
+        'user' => 'Usuário',
     ],
 
 ];

@@ -26,7 +26,22 @@ class AnoRequest extends FormRequest
         return [
             'codigo' => 'required|between:4,6',
             'inicio' => 'required|date',
-            'termino' => 'required|date|after:inicio'
+            'termino' => 'required|date|after:inicio',
+            'unidades.*.codigo' => 'distinct|max:6|filled',
+            'unidades.*.inicio' => 'date|after_or_equal:inicio',
+            'unidades.*.termino' => 'date|before_or_equal:termino|after:unidades.*.inicio',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'codigo' => 'código de ano',
+            'inicio' => 'início de ano',
+            'termino' => 'término de ano',
+            'unidades.*.codigo' => 'código de unidade',
+            'unidades.*.inicio' => 'início de unidade',
+            'unidades.*.termino' => 'término de unidade'
         ];
     }
 }

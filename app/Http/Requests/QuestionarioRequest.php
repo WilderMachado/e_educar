@@ -3,7 +3,6 @@
 namespace eeducar\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Input;
 
 class QuestionarioRequest extends FormRequest
 {
@@ -24,11 +23,11 @@ class QuestionarioRequest extends FormRequest
      */
     public function rules()
     {
-        $qtd=count(Input::get('pergunta_id'));
+        $qtd = count($this->input('pergunta_id'));
         return [
-           'pergunta_id'=>'required|array',
-           'campo_resposta'=>'required|array|size:'.$qtd,
-           'campo_resposta.*'=>'max:255'
+            'pergunta_id' => 'required|array',
+            'campo_resposta' => 'required|array|size:' . $qtd,
+            'campo_resposta.*' => 'max:255'
         ];
     }
 

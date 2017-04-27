@@ -25,6 +25,16 @@
                     {!! Form::date ('termino', null, ['class'=>'form-control']) !!}
                 </div>
             </div>
+            <fieldset>
+                <legend>Unidades</legend>
+            <div id="unidades">
+                <div class="form-group">
+                    <div class="col-xs-offset-2 col-xs-10">
+                        {!! Form::button ('Adicionar Unidade', ['id'=>'btn-adicionar','class'=>'btn btn-primary']) !!}
+                    </div>
+                </div>
+            </div>
+            </fieldset>
             <div class="form-group">
                 <div class="col-xs-offset-2 col-xs-10">
                     {!! Form::submit ('Salvar', ['class'=>'btn btn-primary light-blue darken-3']) !!}
@@ -33,4 +43,5 @@
             {!! Form::close() !!}
         </div>
     </div>
+    {!! Html::script('js/ano.js') !!}
 @endsection

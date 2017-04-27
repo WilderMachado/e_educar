@@ -3,10 +3,18 @@
 namespace eeducar;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Unidade extends Model
 {
-    public function ano(){
+    use SoftDeletes;
+
+    protected $softDelete = true;
+    protected $fillable = ['codigo', 'inicio', 'termino'];
+    protected $hidden = ['deleted_at'];
+
+    public function ano()
+    {
         return $this->belongsTo(Ano::class);
     }
 }

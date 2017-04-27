@@ -24,7 +24,6 @@ function remover(elemento) {
     }
 }
 function adicionar() {
-
     var divForm = criarElemento("div", "form-group");
     var divCol = criarElemento("div", "col-xs-offset-2 col-xs-5");
     var texto = criarElemento("input", "form-control");

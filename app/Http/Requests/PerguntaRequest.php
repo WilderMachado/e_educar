@@ -31,13 +31,6 @@ class PerguntaRequest extends FormRequest
         ];
     }
 
-    public function messages()
-    {
-        return [
-            'distinct' => 'campo :attribute possui valores repetidos.'
-        ];
-    }
-
     public function attributes()
     {
         return [
