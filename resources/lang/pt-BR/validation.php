@@ -65,7 +65,7 @@ return [
     "required_if" => "O campo :attribute é obrigatório quando o valor do campo :other é igual a :value.",
     "required_with" => "O campo :attribute é obrigatório quando :values está presente.",
     "required_with_all" => "O campo :attribute é obrigatório quando um dos :values está presente.",
-    "required_without" => "O campo :attribute é obrigatório quanto :values não está presente.",
+    "required_without" => "O campo :attribute é obrigatório quando :values não está presente.",
     "required_without_all" => "O campo :attribute é obrigatório quando nenhum dos :values está presente.",
     "same" => "Os campos :attribute e :other deverão conter valores iguais.",
     "size" => [
@@ -112,6 +112,10 @@ return [
         'password' => 'Senha',
         'role' => 'Papel',
         'user' => 'Usuário',
+        'codigo' => 'código',
+        'descricao' => 'descrição',
+        'serie' => 'série',
+        'nivel' => 'nível '
     ],
 
 ];

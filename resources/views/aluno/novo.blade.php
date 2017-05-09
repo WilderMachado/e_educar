@@ -30,7 +30,7 @@
             <div class="form-group">
                 {!! Form::label ('turma_id', 'Turma: ',[ 'class'=>'control-label col-xs-2']) !!}
                 <div class="col-xs-5">
-                    {!! Form::select('turma_id', $turmas,null, ['class'=>'form-control', 'placeholder'=>'']) !!}
+                    {!! Form::select('turma_id', $turmas, null, ['class'=>'form-control', 'placeholder'=>'']) !!}
                 </div>
             </div>
             <div class="form-group">
@@ -41,43 +41,50 @@
             </div>
             <fieldset>
                 <legend>Responsável</legend>
-            @if($responsaveis->isNotEmpty())
-                <ul>
-                    {!! Form::checkbox('novo_responsavel', true, false,['id'=>'novo_responsavel']) !!}
-                    {!! Form::label('novo_responsavel', 'Novo Responsável') !!}
-                </ul>
-                <div class="form-group">
-                    {!! Form::label ('responsavel_id', 'Responsável: ',[ 'class'=>'control-label col-xs-2']) !!}
-                    <div class="col-xs-5">
-                        {!! Form::select('responsavel_id', $responsaveis, null, ['id','class'=>'form-control', 'placeholder'=>'']) !!}
+                @if($responsaveis->isNotEmpty())
+                    {{--  <ul>
+                          {!! Form::checkbox('novo_responsavel', true, false,['id'=>'novo_responsavel']) !!}
+                          {!! Form::label('novo_responsavel', 'Novo Responsável') !!}
+                      </ul> --}}
+                    <div class="form-group">
+                        {!! Form::label ('responsavel_id', 'Responsável: ',[ 'class'=>'control-label col-xs-2']) !!}
+                        <div class="col-xs-5">
+                            {!! Form::select('responsavel_id', $responsaveis, null, ['class'=>'form-control', 'placeholder'=>'']) !!}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-offset-2 col-xs-10">
+                            {!! Form::button('Novo Responsável',['id'=>'btn-novo-responsavel','class'=>'btn btn-primary']) !!}
+                            {!! Form::button('Selecionar Responsavel',['id'=>'btn-selecionar-responsavel','class'=>'btn btn-primary']) !!}
+                        </div>
+                    </div>
+                @endif
+                <div id="responsavel">
+                    <div class="form-group">
+                        {!! Form::label ('responsavel[nome]', 'Nome: ',[ 'class'=>'control-label col-xs-2']) !!}
+                        <div class="col-xs-5">
+                            {!! Form::text ('responsavel[nome]', null, ['class'=>'form-control']) !!}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label ('responsavel[email]', 'E-mail: ',[ 'class'=>'control-label col-xs-2']) !!}
+                        <div class="col-xs-5">
+                            {!! Form::text ('responsavel[email]', null, ['class'=>'form-control']) !!}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label ('responsavel[password]', 'Senha: ',[ 'class'=>'control-label col-xs-2']) !!}
+                        <div class="col-xs-5">
+                            {!! Form::password ('responsavel[password]', ['class'=>'form-control']) !!}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label ('responsavel[password_confirmation]', 'Confirmar senha: ',[ 'class'=>'control-label col-xs-2']) !!}
+                        <div class="col-xs-5">
+                            {!! Form::password ('responsavel[password_confirmation]', ['class'=>'form-control']) !!}
+                        </div>
                     </div>
                 </div>
-            @else
-                <div class="form-group">
-                    {!! Form::label ('nome_responsavel', 'Nome: ',[ 'class'=>'control-label col-xs-2']) !!}
-                    <div class="col-xs-5">
-                        {!! Form::text ('nome_responsavel', null, ['class'=>'form-control']) !!}
-                    </div>
-                </div>
-                <div class="form-group">
-                    {!! Form::label ('email_responsavel', 'E-mail: ',[ 'class'=>'control-label col-xs-2']) !!}
-                    <div class="col-xs-5">
-                        {!! Form::text ('email_responsavel', null, ['class'=>'form-control']) !!}
-                    </div>
-                </div>
-                <div class="form-group">
-                    {!! Form::label ('senha_responsavel', 'Senha: ',[ 'class'=>'control-label col-xs-2']) !!}
-                    <div class="col-xs-5">
-                        {!! Form::password ('senha_responsavel', ['class'=>'form-control']) !!}
-                    </div>
-                </div>
-                <div class="form-group">
-                    {!! Form::label ('senha_responsavel_confirmation', 'Confirmar senha: ',[ 'class'=>'control-label col-xs-2']) !!}
-                    <div class="col-xs-5">
-                        {!! Form::password ('senha_responsavel_confirmation', ['class'=>'form-control']) !!}
-                    </div>
-                </div>
-            @endif
             </fieldset>
             <div class="form-group">
                 <div class="col-xs-offset-2 col-xs-10">
@@ -87,5 +94,5 @@
             {!! Form::close() !!}
         </div>
     </div>
-
+    {!! Html::script('js/aluno.js') !!}
 @endsection

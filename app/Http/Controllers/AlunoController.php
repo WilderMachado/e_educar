@@ -7,6 +7,7 @@ use eeducar\Http\ManipuladorArquivo;
 use eeducar\Http\Requests\AlunoRequest;
 use eeducar\Turma;
 use eeducar\User;
+use Illuminate\Support\Facades\Input;
 
 
 class AlunoController extends Controller
@@ -24,9 +25,9 @@ class AlunoController extends Controller
 
     public function novo()
     {
-        $turmas = Turma::orderBy('codigo')->pluck('codigo','id');
-        $responsaveis = User::where('role','responsavel')->orderBy('name')->pluck('name','id');
-        return view('aluno.novo', compact('turmas','responsaveis'));
+        $turmas = Turma::orderBy('codigo')->pluck('codigo', 'id');
+        $responsaveis = User::where('role', 'responsavel')->orderBy('name')->pluck('name', 'id');
+        return view('aluno.novo', compact('turmas', 'responsaveis'));
     }
 
     public function salvar(AlunoRequest $request)
@@ -36,42 +37,78 @@ class AlunoController extends Controller
                 'email' => 'unique:alunos,email',
             ]);
         $aluno = new Aluno($request->all());
-
         $aluno->foto = ManipuladorArquivo::salvar($request->file('foto'), 'alunos', $aluno->matricula);
+        $this->salvarResponsavel($aluno, $request->responsavel_id, $request->responsavel);
+        /*$responsavel_id = $request->responsavel_id;
+        if ($responsavel_id):
+            $aluno->responsavel()->associate($responsavel_id);
+        else:
+            $dados = $request->responsavel;
+            $aluno->responsavel()->associate(User::create([
+                'name' => $dados['nome'],
+                'email' => $dados['email'],
+                'password' => bcrypt($dados['password']),
+                'role' => 'responsavel'
+            ]));
+        endif;*/
         $aluno->save();
         return redirect('alunos');
     }
 
     public function editar($id)
     {
-        $turmas = Turma::orderBy('codigo')->pluck('codigo','id');
+        $turmas = Turma::orderBy('codigo')->pluck('codigo', 'id');
         //$turmas = Turma::find(Aluno::find($id))->pluck('codigo','id');
-       $responsaveis = User::where('role','responsavel')->orderBy('name')->pluck('name','id');
-       // $responsaveis = User::find(Aluno::find($id))->orderBy('name')->pluck('name','id');
+        $responsaveis = User::where('role', 'responsavel')->orderBy('name')->pluck('name', 'id');
+        // $responsaveis = User::find(Aluno::find($id))->orderBy('name')->pluck('name','id');
         $aluno = Aluno::find($id);
-        return view('aluno.editar', compact('aluno','turmas','responsaveis'));
-
+        return view('aluno.editar', compact('aluno', 'turmas', 'responsaveis'));
     }
 
     public function alterar(AlunoRequest $request, $id)
     {
-        $aluno2 = new Aluno();
-        $a = $aluno2::find($id);
-        //ManipuladorArquivo::excluir($a->foto);
-
         $aluno = Aluno::find($id);
-
-        $aluno->foto = ManipuladorArquivo::salvar($request->file('foto'), 'alunos', $request->get('matricula'));
-        $aluno->matricula = $request->get('matricula');
-        //dd($mta = $aluno->matricula);
-        $aluno->update($request->all());
-
+        $aluno->fill($request->all());
+        $foto = ManipuladorArquivo::salvar($request->file('foto'), 'alunos', $aluno->matricula);
+        if ($foto != null && $foto != $aluno->foto):
+            ManipuladorArquivo::excluir($aluno->foto);
+            $aluno->foto = $foto;
+        endif;
+        $this->salvarResponsavel($aluno, $request->responsavel_id, $request->responsavel);
+        $aluno->save();
         return redirect('alunos');
+    }
+
+    public function buscarResponsavel()
+    {
+        return response()->json(User::select('name', 'email')->find(Input::get('responsavel_id')));
     }
 
     public function excluir($id)
     {
         Aluno::find($id)->delete();
         return redirect('alunos');
+    }
+
+    private function salvarResponsavel(Aluno $aluno, $responsavel_id, $dados)
+    {
+        if ($responsavel_id):
+            $aluno->responsavel()->associate($responsavel_id);
+            if ($dados):
+                $aluno->responsavel()->update([
+                    'name' => $dados['nome'],
+                    'email' => $dados['email'],
+                    'password' => bcrypt($dados['password']),
+                    'role' => 'responsavel'
+                ]);
+            endif;
+        else:
+            $aluno->responsavel()->associate(User::create([
+                'name' => $dados['nome'],
+                'email' => $dados['email'],
+                'password' => bcrypt($dados['password']),
+                'role' => 'responsavel'
+            ]));
+        endif;
     }
 }

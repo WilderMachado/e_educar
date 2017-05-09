@@ -20,13 +20,13 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::group(['prefix' => 'alunos', 'where' => ['id' => '[0-9]+']], function () {
-    Route::get('', ['as' => 'alunos', 'uses' => 'AlunoController@index']);
-    Route::get('novo', ['as' => 'alunos.novo', 'uses' => 'AlunoController@novo']);
-    Route::post('salvar', ['as' => 'alunos.salvar', 'uses' => 'AlunoController@salvar']);
-    Route::get('{id}/editar', ['as' => 'alunos.editar', 'uses' => 'AlunoController@editar']);
-    Route::get('{id}/excluir', ['as' => 'alunos.excluir', 'uses' => 'AlunoController@excluir']);
-    Route::put('{id}/alterar', ['as' => 'alunos.alterar', 'uses' => 'AlunoController@alterar']);
-
+    Route::get('', ['as' => 'alunos', 'uses' => 'AlunoController@index'])->middleware('can:visualizar,eeducar\Aluno');
+    Route::get('novo', ['as' => 'alunos.novo', 'uses' => 'AlunoController@novo'])->middleware('can:salvar,eeducar\Aluno');
+    Route::post('salvar', ['as' => 'alunos.salvar', 'uses' => 'AlunoController@salvar'])->middleware('can:salvar,eeducar\Aluno');
+    Route::get('{id}/editar', ['as' => 'alunos.editar', 'uses' => 'AlunoController@editar'])->middleware('can:alterar,eeducar\Aluno');
+    Route::put('{id}/alterar', ['as' => 'alunos.alterar', 'uses' => 'AlunoController@alterar'])->middleware('can:alterar,eeducar\Aluno');
+    Route::get('{id}/excluir', ['as' => 'alunos.excluir', 'uses' => 'AlunoController@excluir'])->middleware('can:excluir,eeducar\Aluno');
+    Route::get('{id}/buscarResponsavel', ['as' => 'alunos.buscarResponsavel', 'uses' => 'AlunoController@buscarResponsavel'])->middleware('can:alterar,eeducar\Aluno');
 });
 Route::group(['prefix' => 'anos', 'where' => ['id' => '[0-9]+']], function () {
     Route::get('', ['as' => 'anos', 'uses' => 'AnoController@index'])->middleware('can:visualizar,eeducar\Ano');
