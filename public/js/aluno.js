@@ -3,17 +3,17 @@
  */
 window.onload = function () {                                                                   //Passa função para onload da janela
     var responsavelId = document.getElementById("responsavel_id");                              //Pega id do responsável
-    var inputsRespnsavel = [
+    var inputsResponsavel = [
         document.getElementById("responsavel[nome]"),                                           //Input de nome do responsável
         document.getElementById("responsavel[email]"),                                          //Input de e-mail de responsável
         document.getElementById("responsavel[password]"),                                       //Input de senha de responsável
         document.getElementById("responsavel[password_confirmation]")                           //Input de confirmação de senha de responsável
-    ];                                                                                          //Cria array de inputs
+    ];                                                                                          //Cria array de inputs de responsável
     if (responsavelId) {                                                                        //Se existir id de responsavel
         var divResponsavel = document.getElementById("responsavel");                            //Pega div de responsável
         divResponsavel.style.display = "none";                                                  //Esconde div de responsável
-        for (var i = 0; i < inputsRespnsavel.length; i++) {                                     //Itera pelos inputs de dados de responsável
-            inputsRespnsavel[i].setAttribute("disabled", "disabled");                           //Passa atributo disabled aos inputs
+        for (var i = 0; i < inputsResponsavel.length; i++) {                                     //Itera pelos inputs de dados de responsável
+            inputsResponsavel[i].setAttribute("disabled", "disabled");                           //Passa atributo disabled aos inputs
         }
         var btnNovoResponsavel = document.getElementById("btn-novo-responsavel");               //Pega botão de criar novo responsável
         var btnEditarResponsavel = document.getElementById("btn-editar-responsavel");           //Pega botão de editar responsável
@@ -28,9 +28,9 @@ window.onload = function () {                                                   
             if (btnEditarResponsavel) {                                                         //Se existir botão de editar responsável
                 btnEditarResponsavel.style.display = "none";                                    //Esconde o botão de editar responsável
             }
-            for (var i = 0; i < inputsRespnsavel.length; i++) {                                 //Itera pelos inputs de dados de responsável
-                inputsRespnsavel[i].removeAttribute("disabled");                                //Remove atributo disabled aos inputs
-                inputsRespnsavel[i].value = null;                                               //Atribui null ao valor dos inputs de responsável
+            for (var i = 0; i < inputsResponsavel.length; i++) {                                 //Itera pelos inputs de dados de responsável
+                inputsResponsavel[i].removeAttribute("disabled");                                //Remove atributo disabled aos inputs
+                inputsResponsavel[i].value = null;                                               //Atribui null ao valor dos inputs de responsável
             }
         });
         btnSelecionarResponsavel.addEventListener("click", function () {                        //Atribui função a click de botão de selecionar responsável
@@ -42,8 +42,8 @@ window.onload = function () {                                                   
             }
             responsavelId.parentNode.parentNode.style.display = "inline";                       //Torna visível seleção de responsável
             responsavelId.removeAttribute("disabled");                                          //Remove atributo disabled da seleção de responsável
-            for (var i = 0; i < inputsRespnsavel.length; i++) {                                 //Itera pelos inputs de responsável
-                inputsRespnsavel[i].setAttribute("disabled", "disabled");                       //Passa atributo disabled aos inputs de responsável
+            for (var i = 0; i < inputsResponsavel.length; i++) {                                 //Itera pelos inputs de responsável
+                inputsResponsavel[i].setAttribute("disabled", "disabled");                       //Passa atributo disabled aos inputs de responsável
             }
         });
         if (btnEditarResponsavel) {                                                             //Se existir botão de editar responsável
@@ -52,8 +52,8 @@ window.onload = function () {                                                   
                     this.style.display = "none";                                                //Esconde botão de editar responsável
                     btnNovoResponsavel.style.display = "inline";                                //Torna visível botão de criar novo responsável
                     btnSelecionarResponsavel.style.display = "inline";                          //Torna visível botão de selecionar responsável
-                    for (var i = 0; i < inputsRespnsavel.length; i++) {                         //Itera pelos inputs de responsável
-                        inputsRespnsavel[i].removeAttribute("disabled");                        //Remove atributo disabled dos inputs de responsável
+                    for (var i = 0; i < inputsResponsavel.length; i++) {                         //Itera pelos inputs de responsável
+                        inputsResponsavel[i].removeAttribute("disabled");                        //Remove atributo disabled dos inputs de responsável
                     }
                     responsavelId.parentNode.parentNode.style.display = "none";                 //Esconde seleção de responsável
                     divResponsavel.style.display = "inline";                                    //Torna visível div de responsável

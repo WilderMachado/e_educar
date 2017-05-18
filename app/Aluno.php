@@ -21,4 +21,14 @@ class Aluno extends Model
     {
         return $this->belongsTo(User::class,'responsavel_id');
     }
+
+    public function notas()
+    {
+        return $this->hasMany(Nota::class);
+    }
+    public function scopeBuscarPorTurma($query, $turma_id)
+    {
+        return $query->where('turma_id', $turma_id);
+
+    }
 }

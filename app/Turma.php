@@ -11,7 +11,7 @@ class Turma extends Model
     use SoftDeletes;
 
     protected $softDelete = true;
-    protected $fillable = ['codigo', 'descricao', 'nivel','serie','turno', 'ano_id'];
+    protected $fillable = ['codigo', 'descricao', 'nivel', 'serie', 'turno', 'ano_id'];
     protected $hidden = ['deleted_at'];
 
     public function ano()
@@ -42,5 +42,10 @@ class Turma extends Model
     public function disciplinaProfessor()
     {
         return DB::table('disciplina_professor_turma')->where('turma_id', $this->id);
+    }
+
+    public function notas()
+    {
+        return $this->hasMany(Nota::class);
     }
 }

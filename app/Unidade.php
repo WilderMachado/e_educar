@@ -17,4 +17,9 @@ class Unidade extends Model
     {
         return $this->belongsTo(Ano::class);
     }
+
+    public function notas()
+    {
+        return $this->hasMany(Nota::class);
+    }
 }
