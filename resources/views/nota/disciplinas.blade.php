@@ -31,5 +31,4 @@
         @endforeach
         </tbody>
     </table>
-    {!! Html::script('js/index.js') !!}
 @endsection

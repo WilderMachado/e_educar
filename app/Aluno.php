@@ -10,22 +10,24 @@ class Aluno extends Model
     use SoftDeletes;
 
     protected $softDelete = true;
-    protected $fillable = ['matricula', 'nome','responsavel_id','turma_id' ,'email','foto'];
+    protected $fillable = ['matricula', 'nome', 'responsavel_id', 'turma_id', 'email', 'foto'];
     protected $hidden = ['deleted_at'];
 
     public function turma()
     {
-        return $this->belongsTo(Turma::class,'turma_id');
+        return $this->belongsTo(Turma::class, 'turma_id');
     }
+
     public function responsavel()
     {
-        return $this->belongsTo(User::class,'responsavel_id');
+        return $this->belongsTo(User::class, 'responsavel_id');
     }
 
     public function notas()
     {
         return $this->hasMany(Nota::class);
     }
+
     public function scopeBuscarPorTurma($query, $turma_id)
     {
         return $query->where('turma_id', $turma_id);

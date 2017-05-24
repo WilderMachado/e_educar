@@ -3,14 +3,27 @@
     <div class="card-panel  #388e3c green darken-2 center">
         <span class=" grey-text text-lighten-5">Notas</span>
     </div>
-
-    <fieldset>
-        <legend>Turmas</legend>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Turma</th>
+            <th>Disciplinas</th>
+        </tr>
+        </thead>
+        <tbody>
         @foreach($turmas as $turma)
-            <a href="{{ route('notas.disciplinas', ['turma_id'=>$turma->id]) }}">
-                {{$turma->descricao}}
-            </a>
-            <br/>
+            <tr>
+                <td>{{$turma->descricao}}</td>
+                <td>
+                    @foreach($turma->disciplinas->intersect($disciplinas) as $disciplina)
+                        <a href="{{ route('notas.unidades', ['turma_id'=>$turma->id, 'disciplina_id'=>$disciplina->id]) }}">
+                            {{$disciplina->nome}}
+                        </a>
+                        <br/>
+                    @endforeach
+                </td>
+            </tr>
         @endforeach
-    </fieldset>
+        </tbody>
+    </table>
 @endsection

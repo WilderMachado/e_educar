@@ -89,6 +89,7 @@ Route::group(['prefix' => 'notas', 'where' => ['id' => '[0-9]+']], function () {
     //Route::get('{id}/excluir', ['as' => 'notas.excluir', 'uses' => 'NotaController@excluir'])->middleware('can:excluir,eeducar\Nota');
     Route::get('turmas',['as'=>'notas.turmas','uses'=>'NotaController@turmas']);
     Route::get('{turma_id}/disciplinas',['as'=>'notas.disciplinas','uses'=>'NotaController@disciplinas']);
+    Route::get('{turma_id}/{disciplina_id}/unidade',['as'=>'notas.unidades','uses'=>'NotaController@unidades']);
     Route::get('{turma_id}/{disciplina_id}/{unidade_id}/novo',['as'=>'notas.novo','uses'=>'NotaController@novo']);
     Route::get('{turma_id}/{disciplina_id}/{unidade_id}/editar', ['as' => 'notas.editar', 'uses' => 'NotaController@editar']);
 });

@@ -4,6 +4,9 @@
         <div class="card-panel  #388e3c green darken-2 center">
             <span class=" grey-text text-lighten-5">Nova Nota</span>
         </div>
+        <h4>Turma: {{$turma->descricao}}</h4>
+        <h4>Disciplina: {{$disciplina->nome}}</h4>
+        <h4>Unidade: {{$unidade->codigo}}</h4>
         @include('errors.alert')
         <div class="form-horizontal">
             {!! Form::open(['route'=>'notas.salvar']) !!}
@@ -12,9 +15,9 @@
                     {!! Form::label ('aluno', $aluno->nome,[ 'class'=>'control-label col-xs-2']) !!}
                     <div class="col-xs-1">
                         {!! Form::hidden ("notas[$indice][aluno_id]", $aluno->id) !!}
-                        {!! Form::hidden ("notas[$indice][turma_id]", $turma_id) !!}
-                        {!! Form::hidden ("notas[$indice][disciplina_id]", $disciplina_id) !!}
-                        {!! Form::hidden ("notas[$indice][unidade_id]", $unidade_id) !!}
+                        {!! Form::hidden ("notas[$indice][turma_id]", $turma->id) !!}
+                        {!! Form::hidden ("notas[$indice][disciplina_id]", $disciplina->id) !!}
+                        {!! Form::hidden ("notas[$indice][unidade_id]", $unidade->id) !!}
                         {!! Form::text ("notas[$indice][valor]", null, ['class'=>'form-control']) !!}
                     </div>
                 </div>
