@@ -25,7 +25,7 @@ class NotaRequest extends FormRequest
     {
         return [
             'notas'=>'array',
-            'notas.*.valor'=>'required|numeric|between:0,10'
+            'notas.*.valor'=>'required_with:notas.*.id|nullable|numeric|between:0,10'
         ];
     }
 }

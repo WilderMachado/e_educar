@@ -84,14 +84,16 @@ Route::group(['prefix' => 'documentos', 'where' => ['id' => '[0-9]+']], function
 
 Route::group(['prefix' => 'notas', 'where' => ['id' => '[0-9]+']], function () {
     Route::get('', ['as' => 'notas', 'uses' => 'NotaController@index'])->middleware('can:visualizar,eeducar\Nota');
-    Route::post('salvar', ['as' => 'notas.salvar', 'uses' => 'NotaController@salvar']);
-    Route::put('{id}/alterar', ['as' => 'notas.alterar', 'uses' => 'NotaController@alterar'])->middleware('can:alterar,eeducar\Nota');
+
+    //Route::put('{id}/alterar', ['as' => 'notas.alterar', 'uses' => 'NotaController@alterar'])->middleware('can:alterar,eeducar\Nota');
     //Route::get('{id}/excluir', ['as' => 'notas.excluir', 'uses' => 'NotaController@excluir'])->middleware('can:excluir,eeducar\Nota');
     Route::get('turmas',['as'=>'notas.turmas','uses'=>'NotaController@turmas']);
     Route::get('{turma_id}/disciplinas',['as'=>'notas.disciplinas','uses'=>'NotaController@disciplinas']);
     Route::get('{turma_id}/{disciplina_id}/unidade',['as'=>'notas.unidades','uses'=>'NotaController@unidades']);
     Route::get('{turma_id}/{disciplina_id}/{unidade_id}/novo',['as'=>'notas.novo','uses'=>'NotaController@novo']);
     Route::get('{turma_id}/{disciplina_id}/{unidade_id}/editar', ['as' => 'notas.editar', 'uses' => 'NotaController@editar']);
+    Route::post('{turma_id}/{disciplina_id}/{unidade_id}/salvar', ['as' => 'notas.salvar', 'uses' => 'NotaController@salvar']);
+    Route::put('{turma_id}/{disciplina_id}/{unidade_id}/alterar', ['as' => 'notas.alterar', 'uses' => 'NotaController@alterar']);
 });
 Route::group(['prefix' => 'perguntas', 'where' => ['id' => '[0-9]+']], function () {
     Route::get('', ['as' => 'perguntas', 'uses' => 'PerguntaController@index'])->middleware('can:visualizar,eeducar\Pergunta');

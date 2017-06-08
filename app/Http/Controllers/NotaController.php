@@ -25,7 +25,7 @@ class NotaController extends Controller
                 break;
             case 'aluno':
                 $turma = Aluno::with('turma')->where('email', $user->email)->first()->turma;
-                return redirect()->route('disciplinas', ['turma_id' => $turma->id]);
+                return redirect()->route('notas.disciplinas', ['turma_id' => $turma->id]);
                 break;
             default:
                 abort(403);
@@ -84,10 +84,8 @@ class NotaController extends Controller
                 break;
             case 'professor':
                 $disciplinas = Professor::with('turmas', 'disciplinas')->where('email', $user->email)->where('turmas.id', $turma_id)->first()->disciplinas;
-                //$disciplinas = $turma->disciplinas->intersect(Professor::with('disciplinas')->where('email', $user->email)->disciplinas);
                 break;
         endswitch;
-        //dd($disciplinas, $turma);
         return view('nota.disciplinas', compact('disciplinas', 'turma'));
     }
 
@@ -105,24 +103,51 @@ class NotaController extends Controller
     public function novo($turma_id, $disciplina_id, $unidade_id)
     {
         $turma = Turma::find($turma_id);
-        //$alunos = Aluno::buscarPorTurma($turma_id)->get();
         $disciplina = Disciplina::find($disciplina_id);
         $unidade = Unidade::find($unidade_id);
         $alunos = $turma->alunos;
         return view('nota.novo', compact('turma', 'disciplina', 'unidade', 'alunos'));
     }
 
-    public function salvar(NotaRequest $request)
+    public function salvar(NotaRequest $request, $turma_id, $disciplina_id, $unidade_id)
     {
-        $notas = $request->notas;
-        foreach ($notas as $nota):
-            Nota::create($nota);
+        foreach ($request->notas as $nota):
+            Nota::create($nota + [
+                    'turma_id' => $turma_id,
+                    'disciplina_id' => $disciplina_id,
+                    'unidade_id' => $unidade_id
+                ]);
         endforeach;
         return redirect('notas');
     }
 
     public function editar($turma_id, $disciplina_id, $unidade_id)
     {
+        $turma = Turma::find($turma_id);
+        $disciplina = Disciplina::find($disciplina_id);
+        $unidade = Unidade::find($unidade_id);
+        $alunos = $turma->alunos;
+        //dd(Nota::query(count('*'))->where('turma_id',$turma_id)->where('disciplina_id',$disciplina_id)->where('unidade_id',$unidade_id)->groupBy('aluno_id'));
+        //$a=collect(\DB::select("select count(*) from notas where turma_id = $turma_id and disciplina_id=$disciplina_id and unidade_id=$unidade_id group by aluno_id"));
+        $qtd=Nota::contar($turma_id,$disciplina_id,$unidade_id)->get()->max('count(*)');
+        //dd($qtd);
+        return view('nota.editar', compact('turma', 'disciplina', 'unidade', 'alunos','qtd'));
+    }
 
+    public function alterar(NotaRequest $request, $turma_id, $disciplina_id, $unidade_id)
+    {//dd($request->notas);
+        foreach ($request->notas as $nota):
+            //echo(array_key_exists('id', $nota));
+            if (array_key_exists('id', $nota)):
+                Nota::find($nota['id'])->update($nota);
+            elseif(array_key_exists('valor', $nota) && $nota['valor']):
+                Nota::create($nota + [
+                        'turma_id' => $turma_id,
+                        'disciplina_id' => $disciplina_id,
+                        'unidade_id' => $unidade_id
+                    ]);
+            endif;
+        endforeach;
+        return redirect('notas');
     }
 }

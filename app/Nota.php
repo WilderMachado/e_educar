@@ -31,4 +31,13 @@ class Nota extends Model
     {
         return $this->belongsTo(Unidade::class);
     }
+
+    public function scopeContar($query, $turma_id, $disciplina_id, $unidade_id)
+    {
+        return $query->select(\DB::raw('count(*)'))
+            ->where('turma_id', $turma_id)
+            ->where('disciplina_id', $disciplina_id)
+            ->where('unidade_id', $unidade_id)
+            ->groupBy('aluno_id');
+    }
 }
