@@ -11,13 +11,22 @@
         <div class="form-horizontal">
             {!! Form::open(['route'=>['notas.alterar',$turma->id,$disciplina->id,$unidade->id], 'method'=>'put']) !!}
             @php $indice=0 @endphp
+            <div class="form-group">
+                {!! Form::label (null, null,[ 'class'=>'control-label col-xs-2']) !!}
+                @for($i=0;$i<$qtd; $i++)
+                    <div class="col-xs-1">
+                        {!! Form::button(null, ['class'=>'glyphicon glyphicon-edit btn-ativar-notas', 'name'=>'nota_'.$i,'title'=>'Ativar']) !!}
+                        {!! Form::button(null, ['class'=>'glyphicon glyphicon-remove btn-desativar-notas', 'name'=>'nota_'.$i,'title'=>'Desativar']) !!}
+                    </div>
+                @endfor
+            </div>
             @foreach($alunos as $aluno)
                 <div class="form-group">
                     {!! Form::label ('aluno', $aluno->nome,[ 'class'=>'control-label col-xs-2']) !!}
-                    @foreach($disciplina->notas->intersect($unidade->notas->intersect($aluno->notas)) as $nota)
+                    @foreach($disciplina->notas->intersect($unidade->notas->intersect($aluno->notas)) as $i=> $nota)
                         <div class="col-xs-1">
-                            {!! Form::hidden ("notas[$indice][id]", $nota->id) !!}
-                            {!! Form::text ("notas[$indice][valor]",$nota->valor , ['class'=>'form-control']) !!}
+                            {!! Form::hidden ("notas[$indice][id]", $nota->id, ['class'=>'nota_'.$i, 'disabled']) !!}
+                            {!! Form::text ("notas[$indice][valor]",$nota->valor , ['class'=>'form-control nota_'.$i, 'disabled']) !!}
                             @php $indice++ @endphp
                         </div>
                     @endforeach
@@ -25,7 +34,7 @@
                         <div class="col-xs-1">
                             {!! Form::button('', ['class'=>'glyphicon glyphicon-plus-sign btn-nota']) !!}
                             {!! Form::hidden ("notas[$indice][aluno_id]", $aluno->id) !!}
-                            {!! Form::text ("notas[$indice][valor]",null , ['class'=>'form-control txt-nota', 'disabled']) !!}
+                            {!! Form::text ("notas[$indice][valor]", null, ['class'=>'form-control txt-nota', 'disabled']) !!}
                             @php $indice++ @endphp
                         </div>
                     @endfor
