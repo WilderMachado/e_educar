@@ -28,4 +28,10 @@ class NotaRequest extends FormRequest
             'notas.*.valor'=>'required_with:notas.*.id|nullable|numeric|between:0,10'
         ];
     }
+    public function attributes()
+    {
+        return [
+            'notas.*.valor'=>'valor da nota'
+        ];
+    }
 }

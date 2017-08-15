@@ -111,6 +111,9 @@ class NotaController extends Controller
 
     public function salvar(NotaRequest $request, $turma_id, $disciplina_id, $unidade_id)
     {
+        $this->validate($request,
+            ['notas.*.valor' => 'required|numeric|between:0,10'],
+            [], ['notas.*.valor' => 'valor da nota']);
         foreach ($request->notas as $nota):
             Nota::create($nota + [
                     'turma_id' => $turma_id,
@@ -129,9 +132,9 @@ class NotaController extends Controller
         $alunos = $turma->alunos;
         //dd(Nota::query(count('*'))->where('turma_id',$turma_id)->where('disciplina_id',$disciplina_id)->where('unidade_id',$unidade_id)->groupBy('aluno_id'));
         //$a=collect(\DB::select("select count(*) from notas where turma_id = $turma_id and disciplina_id=$disciplina_id and unidade_id=$unidade_id group by aluno_id"));
-        $qtd=Nota::contar($turma_id,$disciplina_id,$unidade_id)->get()->max('count(*)');
+        $qtd = Nota::contar($turma_id, $disciplina_id, $unidade_id)->get()->max('count(*)');
         //dd($qtd);
-        return view('nota.editar', compact('turma', 'disciplina', 'unidade', 'alunos','qtd'));
+        return view('nota.editar', compact('turma', 'disciplina', 'unidade', 'alunos', 'qtd'));
     }
 
     public function alterar(NotaRequest $request, $turma_id, $disciplina_id, $unidade_id)
@@ -140,7 +143,7 @@ class NotaController extends Controller
             //echo(array_key_exists('id', $nota));
             if (array_key_exists('id', $nota)):
                 Nota::find($nota['id'])->update($nota);
-            elseif(array_key_exists('valor', $nota) && $nota['valor']):
+            elseif (array_key_exists('valor', $nota) && $nota['valor']):
                 Nota::create($nota + [
                         'turma_id' => $turma_id,
                         'disciplina_id' => $disciplina_id,
